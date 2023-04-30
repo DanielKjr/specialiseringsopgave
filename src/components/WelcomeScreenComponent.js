@@ -1,7 +1,7 @@
 import React from "react";
 import NameForm from "./NameForm";
 import HandleDeleteCookies from "./CookiesForm"
-function welcomeScreen(props){
+function welcomeScreen(){
 
     return(
         <>
