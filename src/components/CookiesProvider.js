@@ -12,11 +12,18 @@ function CookieProvider(props){
     };
 
     const updateResources = (newResources) => {
-        setResources(newResources);
+        setResources(JSON.stringify(newResources));
+    };
+
+    const contextValue = {
+        userName,
+        resources,
+        updateUserName,
+        updateResources
     };
 
     return(
-        <CookiesContext.Provider value={{ userName, resources}}>
+        <CookiesContext.Provider value={contextValue}>
             {props.children}
         </CookiesContext.Provider>
     );

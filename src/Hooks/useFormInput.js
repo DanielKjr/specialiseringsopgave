@@ -14,3 +14,4 @@ export function useFormInput(initialValue){
 
     return inputProps;
 }
+
