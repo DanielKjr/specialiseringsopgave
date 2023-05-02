@@ -1,51 +1,43 @@
 import React, {useContext, useState} from "react";
 import  {CookiesContext} from "./CookiesProvider";
 import { SaveResourceCookies} from "./CookiesForm";
-import ResourceTask from "./ResourceTask";
 import Enums from "../assets/Enums"
-import ProgressBar from "./ProgressBar";
+import ResourceGather from "./resourceGather";
 
 
 
 
 function UserComponent(){
 
-    const { userName,  resources, updateUserName, updateResources} = useContext(CookiesContext);
+    const { userName,  resources} = useContext(CookiesContext);
+    const [currentResourceCategory, setCurrentResourceCategory] = useState(Enums.ResourceEnum.MINING);
+    const [currentResourceItem, setCurrentResourceItem] = useState(Enums.MiningEnum.TIN);
     const parsedResources = JSON.parse(resources);
     let amount = 1;
 
 
-
-    function onClick(){
-        parsedResources.Mining.Tin += 1;
-        parsedResources.Fishing.Trout += 1;
-        updateResources(parsedResources);
-    }
-
-    function HandleResourceIncrease(category, item , amount){
-
-       parsedResources[category][item] += amount;
-        updateResources(parsedResources);
-
-
-    }
     function handleSave(){
         SaveResourceCookies(parsedResources);
     }
 
+    function handleSetCurrentResourceCategory(category){
+        setCurrentResourceCategory(category);
+    }
+
+    function handleSetCurrentResourceItem(item){
+        setCurrentResourceItem(item);
+    }
 
     return(
         <>
         <h1>{userName}</h1>
-            <h1>{JSON.stringify(parsedResources)}</h1>
-            {/*<button onClick={onClick}>Increase Tin</button>*/}
-            <ResourceTask
-                category={Enums.ResourceEnum.MINING}
-                item = {Enums.MiningEnum.TIN}
-                amount={amount}
-                HandleResourceIncrease={HandleResourceIncrease}
-            />
+            <h1>{JSON.stringify(parsedResources.Mining)}</h1>
 
+            <ResourceGather
+                category={currentResourceCategory}
+                item = {currentResourceItem}
+                amount={amount}
+            />
             <button onClick={handleSave}>Save Progress</button>
         </>
     );
