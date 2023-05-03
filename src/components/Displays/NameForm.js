@@ -1,6 +1,6 @@
-import {useFormInput} from "../Hooks/useFormInput";
-import {SaveNameCookie, SaveResourceCookies} from "./CookiesForm";
-import resources from "../services/resources";
+import {useFormInput} from "../../Hooks/useFormInput";
+import {SaveNameCookie, SaveResourceCookies} from "../Storage/CookiesForm";
+import resources from "../../services/resources";
 
 export default function NameForm(){
     const nameProp = useFormInput("");

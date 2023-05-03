@@ -1,8 +1,8 @@
 import React from "react";
-import WelcomeScreenComponent from "../components/WelcomeScreenComponent";
-import HandleDeleteCookies, {CookiesExist} from "../components/CookiesForm";
-import UserComponent from "../components/UserComponent";
-import {CookieProvider} from "../components/CookiesProvider";
+import WelcomeScreenComponent from "../components/Displays/WelcomeScreenComponent";
+import HandleDeleteCookies, {CookiesExist} from "../components/Storage/CookiesForm";
+import UserComponent from "../components/Functionality/UserComponent";
+import {CookieProvider} from "../components/Storage/CookiesProvider";
 
 
 

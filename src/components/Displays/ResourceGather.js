@@ -1,11 +1,13 @@
-import {useContext, useState} from "react";
-import ResourceTask from "./ResourceTask";
-import {CookiesContext} from "./CookiesProvider";
+import {useContext, useEffect, useState} from "react";
+import ResourceTask from "../Functionality/ResourceTask";
+import {CookiesContext} from "../Storage/CookiesProvider";
 
 
-function ResourceGather(props){
+function ResourceGather({item, category, amount}){
     const [isGathering, setIsGathering] = useState(false);
     const {resources,updateResources } = useContext(CookiesContext);
+    const [currentItem, setCurrentItem] = useState(item);
+    const [currentCategory, setCurrentCategory] = useState(category);
     const parsedResources = JSON.parse(resources);
 
     function handleSetGathering(){
@@ -17,12 +19,17 @@ function ResourceGather(props){
         updateResources(parsedResources);
     }
 
+    useEffect(()=>{
+        setCurrentItem(item);
+        setCurrentCategory(category);
+    }, [item, category])
+
     return(
         <>
         <ResourceTask isGathering={isGathering}
-                      category={props.category}
-                      item={props.item}
-                      amount={props.amount}
+                      category={currentCategory}
+                      item={currentItem}
+                      amount={amount}
                       handleResourceIncrease={handleResourceIncrease}
 
         />

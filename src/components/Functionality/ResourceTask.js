@@ -12,11 +12,11 @@ function ResourceTask({category, item, amount, handleResourceIncrease, isGatheri
         setIsActive(isGathering);
     }, [isGathering]);
 
-
+    //TODO make it stop the process entirely when cancelled
     const resourceGathering = useCallback(() => {
         let i = 0;
         const interval = setInterval(() => {
-                setProgress(i+=2);
+                setProgress(i+=10);
                 if (i === 100) {
                     clearInterval(interval);
                     handleResourceIncrease(category, item, amount);
@@ -29,16 +29,17 @@ function ResourceTask({category, item, amount, handleResourceIncrease, isGatheri
     useEffect(() => {
         if(isActive && progress === 0)
             resourceGathering();
-        else if(!isActive && progress !== 1)
+        else if(!isActive && progress >= 1)
             setProgress(0);
 
-    }, [isActive, progress, resourceGathering])
+    }, [isActive, progress, resourceGathering]);
 
     return (
         <>
             <div >
                 <ProgressBar
                     progress={progress}
+                    item={item}
                     style={{ width: `${progress}%`}}
                 ></ProgressBar>
             </div>
