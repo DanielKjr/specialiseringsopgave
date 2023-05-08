@@ -5,7 +5,7 @@ const resources = {
         "Silver": 0,
         "Gold": 0
     },
-    "Smelting": {
+    "Smithing": {
         "Bronze": 0,
         "Silver": 0,
         "Gold": 0

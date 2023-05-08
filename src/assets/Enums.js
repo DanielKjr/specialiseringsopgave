@@ -1,7 +1,7 @@
 
 const ResourceEnum = {
     MINING: "Mining",
-    SMELTING: 'Smelting',
+    SMITHING: 'Smithing',
     WOODCUTTING: 'Woodcutting',
     FISHING: 'Fishing',
     COOKING: 'Cooking'

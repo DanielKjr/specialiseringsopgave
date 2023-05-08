@@ -1,9 +1,11 @@
 import ProgressBar from "./ProgressBar";
-import React, {useCallback, useEffect,useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
+import {UserContext} from "../Storage/UserProvider";
 
 
 
 function ResourceTask({category, item, amount, handleResourceIncrease, isGathering}) {
+
     const [progress, setProgress] = useState(0);
     const [isActive, setIsActive] = useState(isGathering);
 
@@ -36,13 +38,14 @@ function ResourceTask({category, item, amount, handleResourceIncrease, isGatheri
 
     return (
         <>
-            <div >
+
                 <ProgressBar
                     progress={progress}
                     item={item}
                     style={{ width: `${progress}%`}}
+
                 ></ProgressBar>
-            </div>
+
         </>
     );
 }

@@ -1,5 +1,5 @@
 import {useFormInput} from "../../Hooks/useFormInput";
-import {SaveNameCookie, SaveResourceCookies} from "../Storage/CookiesForm";
+import {GetCookies, SaveNameCookie, SaveResourceCookies} from "../Storage/CookiesForm";
 import resources from "../../services/resources";
 
 export default function NameForm(){
@@ -9,7 +9,9 @@ export default function NameForm(){
         event.preventDefault();
         SaveNameCookie(nameProp);
         SaveResourceCookies(resources);
-        window.location.reload();
+        console.log(GetCookies());
+         window.location.reload();
+
     }
 
     return(

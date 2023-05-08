@@ -1,0 +1,50 @@
+.parent-container {
+    display: grid;
+    grid-template-rows: 10% 1fr; /* The first row takes 10% of the height */
+    grid-template-columns: 12% 1fr; /* The first column takes 10% of the width */
+    height: 100vh; /* Set the height of the container to the full viewport height */
+    width: 100%; /* Set the width of the container to the full viewport width */
+    grid-template-areas:
+    "header header"
+    "sidebar main"
+    "siderbar progressbar";
+    background-color: rgba(1, 15, 72, 0.25);
+}
+
+.header {
+
+    grid-area: header; /* Place the header in the grid area named "header" */
+    background-color: #b2afaf;
+}
+
+.main {
+    grid-area: main; /* Place the main content in the grid area named "main" */
+}
+
+.progressbar{
+
+    grid-area: progressbar;
+
+    /*display: grid;*/
+}
+
+.child-container {
+    display: grid;
+    grid-template-rows: 1fr; /* The child container takes up all available vertical space */
+    grid-template-columns: 10% 1fr; /* The first column takes 10% of the width */
+    background-color: #858282;
+    grid-template-areas:
+    "sidebar content"; /* Reference the names of the grid areas from the parent grid */
+}
+
+.sidebar {
+    background-color: #3a2e2e;
+    padding: 2px;
+    grid-area: sidebar; /* Place the sidebar in the grid area named "sidebar" */
+
+}
+
+.content {
+    padding: 5px;
+    grid-area: content; /* Place the main content in the grid area named "content" */
+}

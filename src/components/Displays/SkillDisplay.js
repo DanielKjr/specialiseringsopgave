@@ -1,27 +1,36 @@
 import React from "react";
-import ChangeSkill from "../Functionality/ChangeSkill";
-import ChangeSkillItem from "../Functionality/ChangeSkillItem";
+import ChangeSkill from "./ChangeSkill";
+import ChangeSkillItem from "./ChangeSkillItem";
+// import "./SkillDisplay.css";
+import "./App.css";
 
 
-function SkillDisplay({parsedResources, currentResourceCategory, HandleSetCurrentResourceCategory, HandleSetCurrentResourceItem}){
+
+function DisplaySidebar({parsedResources, currentResourceCategory, HandleSetCurrentResourceCategory, HandleSetCurrentResourceItem}){
 
     return(
-            <div>
-                <ChangeSkill currentResourceCategory={currentResourceCategory}
-                             parsedResources={parsedResources}
-                             HandleSetCurrentResourceCategory={HandleSetCurrentResourceCategory}
-                             HandleSetCurrentResourceItem={HandleSetCurrentResourceItem}/>
-                <br/>
-                <ChangeSkillItem currentResourceCategory={currentResourceCategory}
-                                 parsedResources={parsedResources}
-                                 HandleSetCurrentResourceCategory={HandleSetCurrentResourceCategory}
-                                 HandleSetCurrentResourceItem={HandleSetCurrentResourceItem}/>
-            </div>
 
+                   <ChangeSkill currentResourceCategory={currentResourceCategory}
+                                parsedResources={parsedResources}
+                                HandleSetCurrentResourceCategory={HandleSetCurrentResourceCategory}
+                                HandleSetCurrentResourceItem={HandleSetCurrentResourceItem}/>
 
     );
 }
 
 
 
-export default SkillDisplay;
+export default DisplaySidebar;
+
+export function DisplaySkillItems({parsedResources, currentResourceCategory, HandleSetCurrentResourceCategory, HandleSetCurrentResourceItem})
+{
+    return(
+
+            <ChangeSkillItem currentResourceCategory={currentResourceCategory}
+                             parsedResources={parsedResources}
+                             HandleSetCurrentResourceCategory={HandleSetCurrentResourceCategory}
+                             HandleSetCurrentResourceItem={HandleSetCurrentResourceItem}/>
+
+
+    );
+}
