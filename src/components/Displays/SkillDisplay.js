@@ -1,8 +1,7 @@
 import React from "react";
-import ChangeSkill from "./ChangeSkill";
-import ChangeSkillItem from "./ChangeSkillItem";
-// import "./SkillDisplay.css";
-import "./App.css";
+import ChangeSkill from "../Functionality/ChangeSkill";
+import ChangeSkillItem from "../Functionality/ChangeSkillItem";
+import "../../Styles/App.css";
 
 
 

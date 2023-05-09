@@ -1,31 +1,35 @@
 import React, {useContext, useState} from "react";
 import Enums from "../../assets/Enums";
 import {CookiesContext} from "./CookiesProvider";
-import {CookiesExist, GetResourceCookie, SaveResourceCookies} from "./CookiesForm";
+import {SaveResourceCookies} from "./CookiesForm";
 
 
-const UserContext = React.createContext();
+const ResourceContext = React.createContext();
 
-function UserProvider(props){
+function ResourceProvider(props){
     const {resources, updateResources} = useContext(CookiesContext);
     const [currentResourceCategory, setCurrentResourceCategory] = useState(Enums.ResourceEnum.MINING);
     const [currentResourceItem, setCurrentResourceItem] = useState(Enums.MiningEnum.TIN);
+    const [amount, setAmount] = useState(1);
     const parsedResources = JSON.parse(resources);
 
-    const HandleSave = ()=> {
+    const HandleSave = () => {
         SaveResourceCookies(parsedResources);
     }
 
+    const HandleSetAmount = (value) => {
+        setAmount(value);
+    }
 
     const HandleSetCurrentResourceCategory = (category) => {
         setCurrentResourceCategory(category);
         setCurrentResourceItem(Object.keys(parsedResources[category])[0]);
-        // setValuesChanged(true);
+
     }
 
     const HandleSetCurrentResourceItem =(item)=> {
         setCurrentResourceItem(item);
-        // setValuesChanged(true);
+
     }
     const HandleResourceIncrease = (category, item , amount) =>{
         parsedResources[category][item] += amount;
@@ -37,6 +41,8 @@ function UserProvider(props){
         currentResourceItem,
         resources,
         parsedResources,
+        amount,
+        HandleSetAmount,
         HandleSave,
         HandleSetCurrentResourceCategory,
         HandleSetCurrentResourceItem,
@@ -45,10 +51,10 @@ function UserProvider(props){
     };
 
     return(
-        <UserContext.Provider value={contextValue}>
+        <ResourceContext.Provider value={contextValue}>
             {props.children}
-        </UserContext.Provider>
+        </ResourceContext.Provider>
     );
 }
 
-export {UserContext, UserProvider};
+export {ResourceContext, ResourceProvider};

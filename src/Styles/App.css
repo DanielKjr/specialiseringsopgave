@@ -1,0 +1,30 @@
+
+
+.MainLayoutHeader{
+    height : 10vh;
+    width: auto;
+    background-color: #b2afaf;
+    grid-row: 1;
+    grid-column: span;
+
+}
+
+.MainLayoutWrapper{
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+
+}
+
+.One{
+    grid-column: 1;
+    grid-row: 1/10;
+    max-width: 100px;
+}
+.Two{
+    grid-column: 2;
+    grid-row: 2;
+}
+.MainLayoutText{
+    text-align: center;
+}

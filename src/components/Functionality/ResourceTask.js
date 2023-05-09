@@ -1,6 +1,6 @@
 import ProgressBar from "./ProgressBar";
-import React, {useCallback, useContext, useEffect, useState} from "react";
-import {UserContext} from "../Storage/UserProvider";
+import React, {useCallback, useEffect, useState} from "react";
+
 
 
 
@@ -27,7 +27,7 @@ function ResourceTask({category, item, amount, handleResourceIncrease, isGatheri
         }, 100);
     }, [category, item, amount, handleResourceIncrease]);
 
-    //TODO fix so that it doesn't freak out when paused. needs to be stopped entirely
+
     useEffect(() => {
         if(isActive && progress === 0)
             resourceGathering();
@@ -37,16 +37,11 @@ function ResourceTask({category, item, amount, handleResourceIncrease, isGatheri
     }, [isActive, progress, resourceGathering]);
 
     return (
-        <>
-
                 <ProgressBar
                     progress={progress}
                     item={item}
-                    style={{ width: `${progress}%`}}
-
-                ></ProgressBar>
-
-        </>
+                    style={{ width: `${progress}%`}}>
+                </ProgressBar>
     );
 }
 

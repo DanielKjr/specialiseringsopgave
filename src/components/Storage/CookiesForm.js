@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import React from "react";
-import resources from "../../services/resources";
+
 
 
 export default function HandleDeleteCookies(){
@@ -35,14 +35,10 @@ export function GetNameCookie(){
 }
 
 export function GetResourceCookie(){
-     if(GetCookies)
         return Cookies.get('resources');
-
-
 }
 export function GetCookies(){
     return Cookies.get();
-
 }
 
 export function CookiesExist(){

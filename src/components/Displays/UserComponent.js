@@ -1,23 +1,17 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
-import {CookiesContext} from "../Storage/CookiesProvider";
+import React,{ useContext} from "react";
 import {SaveResourceCookies} from "../Storage/CookiesForm";
-import Enums from "../../assets/Enums"
 import ResourceGather from "./ResourceGather";
-import DisplaySidebar, {DisplaySkillItems} from "./SkillDisplay";
-// import "./SkillDisplay.css";
-import "./MainView.css";
-import {UserContext} from "../Storage/UserProvider";
+import {DisplaySkillItems} from "./SkillDisplay";
+import "../../Styles/MainView.css";
+import {ResourceContext} from "../Storage/ResourceProvider";
 
 
-function UserComponent(props) {
+function UserComponent() {
 
     const {
         currentResourceCategory,
-        currentResourceItem,
         parsedResources,
-    } = useContext(UserContext);
-    let amount = 1;
-    const [valuesChanged, setValuesChanged] = useState(true);
+    } = useContext(ResourceContext);
 
 
     function handleSave() {
@@ -25,33 +19,15 @@ function UserComponent(props) {
     }
 
 
-    // function HandleSetCurrentResourceCategory(category) {
-    //     setCurrentResourceCategory(category);
-    //     setCurrentResourceItem(Object.keys(parsedResources[category])[0]);
-    //     setValuesChanged(true);
-    // }
-    //
-    // function HandleSetCurrentResourceItem(item) {
-    //     setCurrentResourceItem(item);
-    //     setValuesChanged(true);
-    // }
-
-    // useEffect(() => {
-    //     if(valuesChanged)
-    //         props.setGameInfo(resources, currentResourceCategory, currentResourceItem, parsedResources, amount);
-    //         setValuesChanged(false);
-    // }, [valuesChanged])
 
     return (
-        <>
+
             <div  >
             {/*    <h1>{userName}</h1>*/}
             {/*    /!*temporary for debug purposes*!/*/}
                 <h1>Debug:{JSON.stringify(parsedResources[currentResourceCategory])}</h1>
 
-                <ResourceGather
-
-                />
+                <ResourceGather/>
 
                 <div className="content">
                     <DisplaySkillItems/>
@@ -63,7 +39,7 @@ function UserComponent(props) {
 
 
             </div>
-        </>
+
 
 
 

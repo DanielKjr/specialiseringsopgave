@@ -1,12 +1,11 @@
-import React, {useContext, useState} from "react";
-import WelcomeScreenComponent from "./WelcomeScreenComponent";
-import HandleDeleteCookies, {CookiesExist} from "../Storage/CookiesForm";
-import UserComponent from "./UserComponent";
-import {CookieProvider} from "../Storage/CookiesProvider";
-import "./App.css"
-import "./MainView.css";
-import DisplaySidebar from "./SkillDisplay";
-import {UserContext} from "../Storage/UserProvider";
+import React from "react";
+import HandleDeleteCookies from "../components/Storage/CookiesForm";
+import UserComponent from "../components/Displays/UserComponent";
+import {CookieProvider} from "../components/Storage/CookiesProvider";
+import "../Styles/App.css"
+import "../Styles/MainView.css";
+import DisplaySidebar from "../components/Displays/SkillDisplay";
+
 
 
 function App(){
@@ -23,7 +22,7 @@ function App(){
                 </div>
                 <div className="child-container">
                     <CookieProvider >
-                        <div >
+                        <div className="content">
                             <UserComponent  />
                         </div>
 

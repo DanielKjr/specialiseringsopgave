@@ -1,18 +1,16 @@
 import {useCallback, useContext, useEffect, useState} from "react";
-import "./SkillDisplay.css";
-import "./App.css";
-import {UserContext} from "../Storage/UserProvider";
+import "../../Styles/SkillDisplay.css";
+import "../../Styles/App.css";
+import {ResourceContext} from "../Storage/ResourceProvider";
 
 
 function ChangeSkillItem(){
     const {
         currentResourceCategory,
-        currentResourceItem,
-        resources,
         parsedResources,
-        HandleSetCurrentResourceCategory,
         HandleSetCurrentResourceItem
-    } = useContext(UserContext);
+    } = useContext(ResourceContext);
+
     const [availableSkills, setAvailableSkills] = useState(parsedResources[currentResourceCategory]);
     const [objectKeys, setObjectKeys] = useState(Object.keys(availableSkills));
 
@@ -26,23 +24,17 @@ function ChangeSkillItem(){
         try{
             return objectKeys.map((key, i) => {
                 return (
-
                     <img
                         className="skill-item"
                         key={`Resource-${i}`}
                         src={`./ResourceSprites/${key}.png`}
                         alt={key}
                         onClick={() => HandleChangeResource(key)}
+                        width="75px"
+                        height="75px"
                     />
-
-                    // <div className="skill-item">
-                    //
-                    //     <button key={i} onClick={() => HandleChangeResource(key)}>{key}</button>
-                    // </div>
-
                 )
-
-            })
+            });
         }
         catch (error)
         {

@@ -1,21 +1,14 @@
 import {useCallback, useContext, useEffect, useState} from "react";
-import "./SkillDisplay.css";
-import "./App.css";
-import {UserContext} from "../Storage/UserProvider";
+import "../../Styles/SkillDisplay.css";
+import "../../Styles/App.css";
+import {ResourceContext} from "../Storage/ResourceProvider";
 
-
-// {
-    // parsedResources,
-    // currentResourceCategory,
-    // HandleSetCurrentResourceCategory,
-    // HandleSetCurrentResourceItem
-// }
 function ChangeSkill() {
     const {
         currentResourceCategory,
         parsedResources,
         HandleSetCurrentResourceCategory
-    } = useContext(UserContext);
+    } = useContext(ResourceContext);
     const [availableSkills, setAvailableSkills] = useState(parsedResources);
     const [objectKeys, setObjectKeys] = useState(Object.keys(parsedResources));
 

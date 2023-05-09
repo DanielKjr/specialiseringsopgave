@@ -1,7 +1,6 @@
 import {useContext, useEffect, useState} from "react";
 import ResourceTask from "../Functionality/ResourceTask";
-import {CookiesContext} from "../Storage/CookiesProvider";
-import {UserContext} from "../Storage/UserProvider";
+import {ResourceContext} from "../Storage/ResourceProvider";
 
 
 function ResourceGather(){
@@ -9,26 +8,18 @@ function ResourceGather(){
     const {
         currentResourceCategory,
         currentResourceItem,
-        HandleSetCurrentResourceCategory,
-        HandleSetCurrentResourceItem,
         amount,
         handleResourceIncrease
 
-    } = useContext(UserContext);
+    } = useContext(ResourceContext);
     const [isGathering, setIsGathering] = useState(false);
-    const {resources,updateResources } = useContext(CookiesContext);
     const [currentItem, setCurrentItem] = useState(currentResourceItem);
     const [currentCategory, setCurrentCategory] = useState(currentResourceCategory);
-    const parsedResources = JSON.parse(resources);
 
     function handleSetGathering(){
         setIsGathering(!isGathering);
     }
 
-    // function handleResourceIncrease(category, item , amount){
-    //     parsedResources[category][item] += amount;
-    //     updateResources(parsedResources);
-    // }
 
     useEffect(()=>{
         setCurrentItem(currentResourceItem);
@@ -40,7 +31,7 @@ function ResourceGather(){
         <ResourceTask isGathering={isGathering}
                       category={currentCategory}
                       item={currentItem}
-                      amount={1}
+                      amount={amount}
                       handleResourceIncrease={handleResourceIncrease}
 
         />

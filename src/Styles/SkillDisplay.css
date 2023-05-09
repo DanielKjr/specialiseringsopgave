@@ -1,31 +1,15 @@
 
 .skill-container {
-    /*position: absolute;*/
     display: grid;
     gap: 10px;
-    /*left: 50px;*/
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Define grid columns */
     grid-auto-rows: minmax(100px, auto);
-    /*grid-template-columns: repeat(100,100px);*/
-    /*grid-gap: 20px; !* Define the gap between grid items *!*/
-    /*max-width: 100px;*/
-}
-
-.skillOne{
-    grid-column: 1/4;
-    grid-row: 1;
 }
 
 
-
-.skillTwo{
-    grid-column: 2/4;
-    grid-row: 2/3;
-}
 
 .skillItem-container{
     display: grid;
-    /*grid-template-columns: repeat(100,100px);*/
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Define grid columns */
     position: relative;
     left: 200px;
@@ -34,16 +18,12 @@
 
 
 .skill-item{
-    /*height: 50px;*/
-    /*width: 50px;*/
-    /*object-fit: fill;*/
-    /*position: relative;*/
-    /*right: 40px;*/
     image-rendering: high-quality;
     padding: 2px;
     max-width: 100px;
     cursor: pointer;
     position: relative;
+
 
 
 }
