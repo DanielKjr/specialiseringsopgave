@@ -24,15 +24,25 @@ function ChangeSkillItem(){
         try{
             return objectKeys.map((key, i) => {
                 return (
-                    <img
-                        className="skill-item"
-                        key={`Resource-${i}`}
-                        src={`./ResourceSprites/${key}.png`}
-                        alt={key}
-                        onClick={() => HandleChangeResource(key)}
-                        width="75px"
-                        height="75px"
-                    />
+                    <div key={`Resource-+${i}`} onClick={() => HandleChangeResource(key)}
+                    className="skill-item"
+                    >
+                        <div key={`Resource-${i}`}>
+                            <img
+                                className="skill-item"
+
+                                src={`./ResourceSprites/${currentResourceCategory}/${key}.png`}
+                                alt={key}
+                            />
+
+                        </div>
+
+                        <div className="skillItem-text">
+                            {key}
+                        </div>
+
+                    </div>
+
                 )
             });
         }
@@ -47,19 +57,15 @@ function ChangeSkillItem(){
 
 
     useEffect(() => {
-        const newAvailableSkills = parsedResources[currentResourceCategory];
-        const newObjectKeys = Object.keys(newAvailableSkills);
+            const newAvailableSkills = parsedResources[currentResourceCategory];
+            const newObjectKeys = Object.keys(newAvailableSkills);
 
-        setAvailableSkills(newAvailableSkills);
-        setObjectKeys(newObjectKeys);
+            setAvailableSkills(newAvailableSkills);
+            setObjectKeys(newObjectKeys);
     }, [parsedResources, currentResourceCategory]);
 
     return(
-        <div className="content">
-            {renderObjects()}
-        </div>
-
-
+            renderObjects()
     );
 }
 

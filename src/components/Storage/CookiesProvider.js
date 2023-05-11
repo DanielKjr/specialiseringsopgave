@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {GetNameCookie, GetResourceCookie } from "./CookiesForm";
 
-const CookiesContext = React.createContext();
+const CookiesContext = React.createContext({});
 
 function CookieProvider(props){
     const [userName, setUserName] = useState(GetNameCookie());

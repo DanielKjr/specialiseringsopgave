@@ -12,26 +12,26 @@ function ChangeSkill() {
     const [availableSkills, setAvailableSkills] = useState(parsedResources);
     const [objectKeys, setObjectKeys] = useState(Object.keys(parsedResources));
 
-    const HandleChangeResource= (key) => {
-        HandleSetCurrentResourceCategory(key);
 
-    }
 
     const renderObjects = useCallback(() => {
         try {
+
             return objectKeys.map((key, i) => {
                 return (
                     <div key={`Resources-+${i}`}
-                        onClick={() => HandleChangeResource(key)}
+                        onClick={() =>  HandleSetCurrentResourceCategory(key)}
                         className="skill"                    >
                         <div key={`Resources-${i}`} >
                             <img
+                                className="skill-image"
                                 src={`./SkillSprites/${key}.png`}
                                 alt={key}
 
                             />
-                            <div className="skill-text" style={{color: "white"}}>{key}</div>
+                            <div className="skill-text" >{key}</div>
                         </div>
+
                     </div>
 
                 );
@@ -41,7 +41,7 @@ function ChangeSkill() {
                 <div></div>
             );
         }
-    }, [ objectKeys]);
+    }, [HandleSetCurrentResourceCategory ,objectKeys]);
 
 
 

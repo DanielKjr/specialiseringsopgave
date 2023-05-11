@@ -1,5 +1,6 @@
 
 const ResourceEnum = {
+    BANK : "Bank",
     MINING: "Mining",
     SMITHING: 'Smithing',
     WOODCUTTING: 'Woodcutting',
@@ -11,37 +12,60 @@ const ResourceEnum = {
  const MiningEnum={
     TIN : "Tin",
     COPPER: "Copper",
+    IRON: "Iron",
     SILVER : "Silver",
-    GOLD : "Gold"
+    GOLD : "Gold",
+    COAL: "Coal",
+    MITHRIL: "Mithril",
+    ADAMANTITE: "Adamantite",
+    RUNITE: "Runite"
 }
 
  const SmeltingEnum = {
-    BRONZE : "Bronze",
-    SILVER : "Silver",
-    GOLD: "Gold"
+     BRONZE : "Bronze",
+     IRON: "Iron",
+     SILVER : "Silver",
+     GOLD: "Gold",
+     STEEL: "Steel",
+     MITHRIL: "Mithril",
+     ADAMANTITE: "Adamantite",
+     RUNITE: "Runite"
 }
 
  const WoodcuttingEnum = {
-    TREE : "Tree",
-    OAK : "Oak",
-    WILLOW : "Willow",
-    MAPLE : "Maple"
+     NORMAL : "Normal",
+     OAK : "Oak",
+     WILLOW : "Willow",
+     MAPLE : "Maple",
+     YEW : "Yew",
+     TEAK : "Teak",
+     MAHOGANY: "Mahogany",
+     MAGIC: "Magic",
+     REDWOOD: "Redwood"
 }
 
  const FishingEnum = {
-    SARDINE: "Sardine",
-    TROUT: "Trout",
-    SALMON: "Salmon"
+     SHRIMP : "Shrimp",
+     HERRING: "Herring",
+     SARDINE: "Sardine",
+     TROUT: "Trout",
+     SALMON: "Salmon",
+     CRAB: "Crab",
+     LOBSTER: "Lobster",
+     SWORDFISH: "Swordfish"
 }
 
 //TODO fix that
  const CookingEnum = {
-    COOKEDSARDINE: "Cooked Sardine",
-    BURNEDSardine: "Burned Sardine",
-    COOKEDTROUT : "Cooked Trout",
-    BURNEDTROUT : "Burned Trout",
-    COOKEDSALMON: "Cooked Salmon",
-    BURNEDSALMON: "Burned Salmon"
+     COOKEDSHRIMP : "CookedShrimp",
+     COOKEDHERRING: "CookedHerring",
+     COOKEDSARDINE: "CookedSardine",
+     COOKEDTROUT : "CookedTrout",
+     COOKEDSALMON: "CookedSalmon",
+     COOKEDCRAB: "CookedCrab",
+     COOKEDLOBSTER: "CookedLobster",
+     COOKEDSWORDFISH: "CookedSwordfish"
+
 }
 
 const Enums = {ResourceEnum, MiningEnum, SmeltingEnum, WoodcuttingEnum, FishingEnum, CookingEnum};

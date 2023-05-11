@@ -1,5 +1,5 @@
 import {useContext, useEffect, useState} from "react";
-import ResourceTask from "../Functionality/ResourceTask";
+import ResourceTask from "./ResourceTask";
 import {ResourceContext} from "../Storage/ResourceProvider";
 
 

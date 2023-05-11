@@ -7,7 +7,7 @@
     grid-template-areas:
     "header header"
     "sidebar main"
-    "siderbar progressbar";
+    "sidebar progressbar";
     background-color: rgba(1, 15, 72, 0.25);
 }
 
@@ -28,9 +28,10 @@
 }
 
 .child-container {
-    display: grid;
-    grid-template-rows: 1fr; /* The child container takes up all available vertical space */
-    grid-template-columns: 10% 1fr; /* The first column takes 10% of the width */
+    /* commented out while I figure out if I should keep it as a grid*/
+    /*display: grid;*/
+    /*grid-template-rows: 1fr; !* The child container takes up all available vertical space *!*/
+    /*grid-template-columns: 10% 1fr; !* The first column takes 10% of the width *!*/
     background-color: #858282;
     grid-template-areas:
     "sidebar content"; /* Reference the names of the grid areas from the parent grid */
@@ -40,7 +41,7 @@
     background-color: #3a2e2e;
     padding: 2px;
     grid-area: sidebar; /* Place the sidebar in the grid area named "sidebar" */
-
+    font-size: 20px;
 }
 
 .content {

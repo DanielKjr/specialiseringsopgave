@@ -1,18 +1,25 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Enums from "../../assets/Enums";
 import {CookiesContext} from "./CookiesProvider";
 import {SaveResourceCookies} from "./CookiesForm";
 
 
-const ResourceContext = React.createContext();
+const ResourceContext = React.createContext({});
+
+
 
 function ResourceProvider(props){
     const {resources, updateResources} = useContext(CookiesContext);
     const [currentResourceCategory, setCurrentResourceCategory] = useState(Enums.ResourceEnum.MINING);
     const [currentResourceItem, setCurrentResourceItem] = useState(Enums.MiningEnum.TIN);
     const [amount, setAmount] = useState(1);
+    const [bank, setBank] = useState(resources);
     const parsedResources = JSON.parse(resources);
 
+    useEffect(() => {
+        if(bank !== resources)
+            setBank(resources);
+    },[bank, resources])
     const HandleSave = () => {
         SaveResourceCookies(parsedResources);
     }
@@ -22,9 +29,20 @@ function ResourceProvider(props){
     }
 
     const HandleSetCurrentResourceCategory = (category) => {
-        setCurrentResourceCategory(category);
-        setCurrentResourceItem(Object.keys(parsedResources[category])[0]);
+        if(category !== "Bank")
+        {
+            setCurrentResourceCategory(category);
+            setCurrentResourceItem(Object.keys(parsedResources[category])[0]);
+        }
+        else{
+            setCurrentResourceCategory(category);
+        }
 
+
+    }
+
+    const HandleSetBankView = (category) => {
+        setCurrentResourceCategory(category);
     }
 
     const HandleSetCurrentResourceItem =(item)=> {
@@ -32,7 +50,7 @@ function ResourceProvider(props){
 
     }
     const HandleResourceIncrease = (category, item , amount) =>{
-        parsedResources[category][item] += amount;
+        parsedResources[category][item].amount += amount;
         updateResources(parsedResources);
     }
 
@@ -42,6 +60,8 @@ function ResourceProvider(props){
         resources,
         parsedResources,
         amount,
+        bank,
+        HandleSetBankView,
         HandleSetAmount,
         HandleSave,
         HandleSetCurrentResourceCategory,
