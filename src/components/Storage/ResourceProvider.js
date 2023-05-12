@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from "react";
 import Enums from "../../assets/Enums";
 import {CookiesContext} from "./CookiesProvider";
 import {SaveResourceCookies} from "./CookiesForm";
-
+import recipes from "../../services/Recipes";
 
 const ResourceContext = React.createContext({});
 
@@ -53,6 +53,67 @@ function ResourceProvider(props){
         parsedResources[category][item].amount += amount;
         updateResources(parsedResources);
     }
+    const HandleResourceDecrease = (category, item , amount) =>{
+            parsedResources[category][item].amount -= amount;
+        updateResources(parsedResources);
+    }
+
+    //TODO should probably split this to different component
+    const HandleCheckIfRecipeExists = (category) => {
+        return recipes.hasOwnProperty(category);
+    }
+
+    const HandleCheckRecipeRequirement = (category, item) => {
+        let requirements = recipes[category][item].recipe;
+        let subskill = HandleDetermineRecipeSubset(category);
+        let count = 0;
+        let tmp = [];
+        for(let req in requirements)
+        {
+            if(parsedResources[subskill][req].amount >= requirements[req])
+                count++;
+                tmp.push(req);
+        }
+
+        if ( count === Object.keys(requirements).length)
+        {
+            for(let i = 0; i < tmp.length; i++)
+            {
+                HandleResourceDecrease(subskill, [tmp[i]], requirements[tmp[i]]);
+            }
+            HandleResourceIncrease(category, item, 1);
+        }
+    }
+    //TODO find out if I can get rid of this duplicate code
+    const HandleCheckCanCraft = (category, item) => {
+        let requirements = recipes[category][item].recipe;
+        let subskill = HandleDetermineRecipeSubset(category);
+        let count = 0;
+
+        for(let req in requirements)
+        {
+            if(parsedResources[subskill][req].amount >= requirements[req])
+                count++;
+
+        }
+        return count === Object.keys(requirements).length;
+    }
+
+    const HandleDetermineRecipeSubset = (category) => {
+        switch (category)
+        {
+            case"Smithing":
+                return "Mining";
+
+            case"Cooking":
+                return "Fishing";
+
+            default:
+                break;
+
+        }
+    }
+
 
     const contextValue = {
         currentResourceCategory,
@@ -66,7 +127,10 @@ function ResourceProvider(props){
         HandleSave,
         HandleSetCurrentResourceCategory,
         HandleSetCurrentResourceItem,
-        handleResourceIncrease: HandleResourceIncrease
+        HandleResourceIncrease,
+        HandleCheckIfRecipeExists,
+        HandleCheckRecipeRequirement,
+        HandleCheckCanCraft
 
     };
 

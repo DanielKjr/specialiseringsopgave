@@ -28,7 +28,6 @@ function DisplayBank(){
                         amounts.push(key[property].amount);
                         if (key[property].amount >= 1) {
                             count++;
-                            console.log(count);
                         }
                     }
                 }
@@ -41,7 +40,7 @@ function DisplayBank(){
                                         <img
                                             onClick={() => handleOnClick(sprite)}
                                             className="bank-item"
-                                            src={sprite}
+                                            src={`./ResourceSprites/${sprite}.png`}
                                             alt="Missing img"
                                         />
                                         <div className="bank-text">

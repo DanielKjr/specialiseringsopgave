@@ -1,47 +1,47 @@
 import ProgressBar from "./ProgressBar";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback,useEffect, useState} from "react";
+import useTask from "../../Hooks/useTask";
 
 
-
-
-function ResourceTask({category, item, amount, handleResourceIncrease, isGathering}) {
+function ResourceTask({category, item, amount, HandleResourceIncrease, isGathering}) {
 
     const [progress, setProgress] = useState(0);
     const [isActive, setIsActive] = useState(isGathering);
 
-    //update value when parent value changes
+    //Get status from parent component
     useEffect(() => {
         setIsActive(isGathering);
     }, [isGathering]);
 
-    //TODO make it stop the process entirely when cancelled
-    const resourceGathering = useCallback(() => {
+
+    const task = useCallback(() => {
         let i = 0;
         const interval = setInterval(() => {
-                setProgress(i+=10);
-                if (i === 100) {
-                    clearInterval(interval);
-                    handleResourceIncrease(category, item, amount);
-                    setProgress(0);
+            setProgress(i += 10);
+
+            if (i === 100) {
+                clearInterval(interval);
+                if (isActive) {
+                    HandleResourceIncrease(category, item, amount);
                 }
+                setProgress(0);
+            }
         }, 100);
-    }, [category, item, amount, handleResourceIncrease]);
+
+        return interval;
+    }, [isActive, category, item, amount, HandleResourceIncrease]);
 
 
-    useEffect(() => {
-        if(isActive && progress === 0)
-            resourceGathering();
-        else if(!isActive && progress >= 1)
-            setProgress(0);
+    useTask(isActive, task, setProgress);
 
-    }, [isActive, progress, resourceGathering]);
+
 
     return (
-                <ProgressBar
-                    progress={progress}
-                    item={item}
-                    style={{ width: `${progress}%`}}>
-                </ProgressBar>
+        <ProgressBar
+            progress={progress}
+            item={item}
+            style={{width: `${progress}%`}}>
+        </ProgressBar>
     );
 }
 

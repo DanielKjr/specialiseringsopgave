@@ -37,6 +37,13 @@ export function GetNameCookie(){
 export function GetResourceCookie(){
         return Cookies.get('resources');
 }
+
+//Used to figure out if storage was exceeded
+export function GetCookieSize(){
+    let cookieString = document.cookie;
+    let cookieSize = cookieString.length * 2;
+    return cookieSize;
+}
 export function GetCookies(){
     return Cookies.get();
 }

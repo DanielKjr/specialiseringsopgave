@@ -4,7 +4,6 @@ import ResourceGather from "../Functionality/ResourceGather";
 import {DisplaySkillItems} from "./SkillDisplay";
 import "../../Styles/MainView.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
-import ChangeSkillItem from "../Functionality/ChangeSkillItem";
 import DisplayBank from "./DisplayBank";
 
 
