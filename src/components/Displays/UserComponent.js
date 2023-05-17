@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {SaveResourceCookies} from "../Storage/CookiesForm";
 import ResourceGather from "../Functionality/ResourceGather";
 import {DisplaySkillItems} from "./SkillDisplay";
@@ -7,27 +7,41 @@ import {ResourceContext} from "../Storage/ResourceProvider";
 import DisplayBank from "./DisplayBank";
 
 
+
 function UserComponent() {
+
 
     const {
         currentResourceCategory,
+        currentResourceItem,
         parsedResources,
     } = useContext(ResourceContext);
 
 
     function handleSave() {
         SaveResourceCookies(parsedResources);
+        localStorage.setItem('lastResourceCategory', currentResourceCategory);
+        localStorage.setItem('lastResourceItem', currentResourceItem);
+        localStorage.setItem('lastTimeVisited', new Date().getTime().toString());
     }
-
+    // useEffect(() => {
+    //     const handleUnload = (event) => {
+    //         // Check if the unload event was triggered by a page refresh
+    //         if (event.type === 'beforeunload' && performance.getEntriesByType('navigation')[0].type === 'reload') {
+    //             handleSave();
+    //         }
+    //         handleSave();
+    //     };
+    //
+    //     window.addEventListener('beforeunload', handleUnload);
+    //     return () => {
+    //         window.removeEventListener('beforeunload', handleUnload);
+    //     };
+    // })
 
     if (currentResourceCategory !== "Bank") {
         return (
             < >
-                {/*    <h1>{userName}</h1>*/}
-                {/*    /!*temporary for debug purposes*!/*/}
-                {/*<h1>Debug:{JSON.stringify(parsedResources[currentResourceCategory])}</h1>*/}
-
-
                 <ResourceGather/>
                 <div className="skill-container">
                     <DisplaySkillItems/>

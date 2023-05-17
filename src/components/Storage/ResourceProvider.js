@@ -12,6 +12,8 @@ function ResourceProvider(props){
     const {resources, updateResources} = useContext(CookiesContext);
     const [currentResourceCategory, setCurrentResourceCategory] = useState(Enums.ResourceEnum.MINING);
     const [currentResourceItem, setCurrentResourceItem] = useState(Enums.MiningEnum.TIN);
+    const [previousResourceItem, setPreviousResourceItem] = useState(localStorage.getItem('lastResourceItem'));
+    const [previousResourceCategory, setPreviousResourceCategory] = useState(localStorage.getItem('lastResourceCategory'));
     const [amount, setAmount] = useState(1);
     const [bank, setBank] = useState(resources);
     const parsedResources = JSON.parse(resources);
@@ -29,6 +31,7 @@ function ResourceProvider(props){
     }
 
     const HandleSetCurrentResourceCategory = (category) => {
+        HandleSetPreviousResourceInfo();
         if(category !== "Bank")
         {
             setCurrentResourceCategory(category);
@@ -37,8 +40,19 @@ function ResourceProvider(props){
         else{
             setCurrentResourceCategory(category);
         }
+    }
 
+    const HandleSetPreviousResourceInfo = () => {
+        setPreviousResourceItem(currentResourceItem);
+        if(currentResourceCategory !== "Bank")
+        {
+            setPreviousResourceCategory(currentResourceCategory);
 
+        }
+
+        //
+        // localStorage.setItem('lastResourceCategory', currentResourceCategory);
+        // localStorage.setItem('lastResourceItem', currentResourceItem);
     }
 
     const HandleSetBankView = (category) => {
@@ -50,6 +64,7 @@ function ResourceProvider(props){
 
     }
     const HandleResourceIncrease = (category, item , amount) =>{
+        console.log("Category: " + category, "item: " + item, "Amount: " + amount);
         parsedResources[category][item].amount += amount;
         updateResources(parsedResources);
     }
@@ -117,11 +132,22 @@ function ResourceProvider(props){
 
     const contextValue = {
         currentResourceCategory,
+        previousResourceItem,
+        previousResourceCategory,
         currentResourceItem,
         resources,
         parsedResources,
         amount,
         bank,
+        // methods : {HandleSetBankView,
+        //     HandleSetAmount,
+        //     HandleSave,
+        //     HandleSetCurrentResourceCategory,
+        //     HandleSetCurrentResourceItem,
+        //     HandleResourceIncrease,
+        //     HandleCheckIfRecipeExists,
+        //     HandleCheckRecipeRequirement,
+        //     HandleCheckCanCraft }
         HandleSetBankView,
         HandleSetAmount,
         HandleSave,

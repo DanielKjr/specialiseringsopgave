@@ -41,7 +41,6 @@ function ResourceGather(){
     return(
         <>
             {!HandleCheckIfRecipeExists(currentCategory)? (
-
                 <div >
 
                     <ResourceTask isGathering={isGathering}
