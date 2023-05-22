@@ -1,11 +1,11 @@
 import React from "react";
 import '../../Styles/Progressbar.css';
 
-function ProgressBar({ progress, item }) {
+function ProgressBar({ progress }) {
     return (
         <div className="progressBar">
             <div className="progress" style={{ width: `${progress}%` }}>
-                <span className="sr-only">{`${progress}%${item}`}</span>
+                <span className="sr-only">{`${progress}%`}</span>
             </div>
         </div>
     );

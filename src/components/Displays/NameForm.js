@@ -5,6 +5,7 @@ import resources from "../../services/resources";
 export default function NameForm(){
     const nameProp = useFormInput("");
 
+    //TODO check why async
     const handleSubmit = async (event) =>{
         event.preventDefault();
         SaveNameCookie(nameProp);

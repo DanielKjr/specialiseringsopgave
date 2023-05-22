@@ -6,8 +6,6 @@ import recipes from "../../services/Recipes";
 
 const ResourceContext = React.createContext({});
 
-
-
 function ResourceProvider(props){
     const {resources, updateResources} = useContext(CookiesContext);
     const [currentResourceCategory, setCurrentResourceCategory] = useState(Enums.ResourceEnum.MINING);
@@ -47,12 +45,7 @@ function ResourceProvider(props){
         if(currentResourceCategory !== "Bank")
         {
             setPreviousResourceCategory(currentResourceCategory);
-
         }
-
-        //
-        // localStorage.setItem('lastResourceCategory', currentResourceCategory);
-        // localStorage.setItem('lastResourceItem', currentResourceItem);
     }
 
     const HandleSetBankView = (category) => {
@@ -114,6 +107,19 @@ function ResourceProvider(props){
         return count === Object.keys(requirements).length;
     }
 
+    const GetCraftingRequirements = (category, item) => {
+        let requirements = recipes[category][item].recipe;
+        let tmp = [];
+
+        for(let req in requirements)
+        {
+            let obj = {name: req, value: requirements[req]}
+            tmp.push(obj);
+        }
+
+       return tmp;
+    }
+
     const HandleDetermineRecipeSubset = (category) => {
         switch (category)
         {
@@ -139,25 +145,19 @@ function ResourceProvider(props){
         parsedResources,
         amount,
         bank,
-        // methods : {HandleSetBankView,
-        //     HandleSetAmount,
-        //     HandleSave,
-        //     HandleSetCurrentResourceCategory,
-        //     HandleSetCurrentResourceItem,
-        //     HandleResourceIncrease,
-        //     HandleCheckIfRecipeExists,
-        //     HandleCheckRecipeRequirement,
-        //     HandleCheckCanCraft }
-        HandleSetBankView,
-        HandleSetAmount,
-        HandleSave,
-        HandleSetCurrentResourceCategory,
-        HandleSetCurrentResourceItem,
-        HandleResourceIncrease,
-        HandleCheckIfRecipeExists,
-        HandleCheckRecipeRequirement,
-        HandleCheckCanCraft
-
+        methods : {
+            HandleSetBankView,
+            HandleSetAmount,
+            HandleSave,
+            HandleSetCurrentResourceCategory,
+            HandleSetCurrentResourceItem,
+            HandleResourceIncrease,
+            HandleCheckIfRecipeExists,
+            HandleCheckRecipeRequirement,
+            HandleCheckCanCraft,
+            GetCraftingRequirements,
+            HandleDetermineRecipeSubset
+        }
     };
 
     return(

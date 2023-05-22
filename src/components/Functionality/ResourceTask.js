@@ -39,7 +39,6 @@ function ResourceTask({category, item, amount, HandleResourceIncrease, isGatheri
     return (
         <ProgressBar
             progress={progress}
-            item={item}
             style={{width: `${progress}%`}}>
         </ProgressBar>
     );

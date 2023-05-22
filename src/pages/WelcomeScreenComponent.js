@@ -5,6 +5,8 @@ function welcomeScreen(){
 
     return(
         <>
+            <h1>Welcome to this Idle game</h1>
+            <h3>Enter a name and submit to continue</h3>
             <NameForm />
             <HandleDeleteCookies/>
         </>

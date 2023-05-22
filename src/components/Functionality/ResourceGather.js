@@ -2,6 +2,9 @@ import {useContext, useEffect, useState} from "react";
 import ResourceTask from "./ResourceTask";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import CraftingTask from "./CraftingTask";
+import SkillDisplay from "../Displays/MainDisplay";
+import craftingTask from "./CraftingTask";
+import recipes from "../../services/Recipes";
 
 
 function ResourceGather(){
@@ -9,22 +12,31 @@ function ResourceGather(){
     const {
         currentResourceCategory,
         currentResourceItem,
+        parsedResources,
         amount,
-        HandleResourceIncrease,
-        HandleCheckRecipeRequirement,
-        HandleCheckCanCraft,
-        HandleCheckIfRecipeExists
+        methods
     } = useContext(ResourceContext);
     const [isGathering, setIsGathering] = useState(false);
     const [isCrafting, setIsCrafting] = useState(false);
     const [currentItem, setCurrentItem] = useState(currentResourceItem);
     const [currentCategory, setCurrentCategory] = useState(currentResourceCategory);
+    const [craftingRequirements, setCraftingRequirements] = useState([]);
 
+    useEffect(() =>{
+        if(methods.HandleCheckIfRecipeExists(currentCategory, currentItem))
+        {
+            HandleSetCraftingRequirements();
+        }
+
+    }, [currentCategory, currentItem,methods.HandleCheckIfRecipeExists])
+    function HandleSetCraftingRequirements(){
+        setCraftingRequirements(methods.GetCraftingRequirements(currentCategory, currentItem));
+    }
     function handleSetGathering(){
         setIsGathering(!isGathering);
     }
     function handleSetCrafting(){
-        if(HandleCheckCanCraft(currentCategory, currentItem))
+        if(methods.HandleCheckCanCraft(currentCategory, currentItem))
          setIsCrafting(!isCrafting);
     }
 
@@ -33,39 +45,56 @@ function ResourceGather(){
         setCurrentItem(currentResourceItem);
         setCurrentCategory(currentResourceCategory);
 
-        if(isCrafting && !HandleCheckCanCraft(currentCategory, currentItem))
+        if(isCrafting && !methods.HandleCheckCanCraft(currentCategory, currentItem))
             setIsCrafting(false);
 
-    }, [ HandleCheckCanCraft,isCrafting,currentResourceItem, currentResourceCategory])
+    }, [ methods.HandleCheckCanCraft,isCrafting,currentResourceItem, currentResourceCategory])
 
     return(
         <>
-            {!HandleCheckIfRecipeExists(currentCategory)? (
+            {!methods.HandleCheckIfRecipeExists(currentCategory)? (
                 <div >
-
                     <ResourceTask isGathering={isGathering}
                                   category={currentCategory}
                                   item={currentItem}
                                   amount={amount}
-                                  HandleResourceIncrease={HandleResourceIncrease}
+                                  HandleResourceIncrease={methods.HandleResourceIncrease}
                     />
                     <br/>
                     <br/>
                     <button  onClick={handleSetGathering}>StartGather</button>
                 </div>
             ):
-
                 <div>
-                    <h1>Add the requirements dummy</h1>
+                    <div className="skill-requirementContainer">
+                        Requirements:
+                        {craftingRequirements.map((key, value) => (
+                            <div key={`${value}+${key}`} className="skill-requirement">
+                                <img key={`${value}+- ${key}`} className="requirement-image"
+                                     src={`./ResourceSprites/${methods.HandleDetermineRecipeSubset(currentCategory)}/${craftingRequirements[value].name}.png`}
+                                     alt={`./ResourceSprites/${methods.HandleDetermineRecipeSubset(currentCategory)}/${craftingRequirements[value].name}.png not found`}
+                                />
+                                <h1 className="skill-requirementText" key={`${key}+value`}>
+                                    {craftingRequirements[value].value}
+                                </h1>
+
+                            </div>
+
+
+                        ))}
+
+
+                    </div>
+
+
                     <CraftingTask isCrafting={isCrafting}
                                   category={currentCategory}
                                   item={currentItem}
                                   amount={amount}
-                                  HandleResourceIncrease={HandleResourceIncrease}
-                                  handleCheckRecipeRequirement={HandleCheckRecipeRequirement}
+                                  HandleResourceIncrease={methods.HandleResourceIncrease}
+                                  handleCheckRecipeRequirement={methods.HandleCheckRecipeRequirement}
                     />
                     <button  onClick={handleSetCrafting}>Start Crafting</button>
-                    {/*TODO show requirements on screen*/}
 
                 </div>}
         </>

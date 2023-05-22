@@ -3,48 +3,14 @@ import "../../Styles/SkillDisplay.css";
 import "../../Styles/App.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
 
-function ChangeSkill() {
+function HandleSkillCategory() {
     const {
         currentResourceCategory,
         parsedResources,
-        HandleSetCurrentResourceCategory
+        methods
     } = useContext(ResourceContext);
     const [availableSkills, setAvailableSkills] = useState(parsedResources);
     const [objectKeys, setObjectKeys] = useState(Object.keys(parsedResources));
-
-
-
-    const renderObjects = useCallback(() => {
-        try {
-
-            return objectKeys.map((key, i) => {
-                return (
-                    <div key={`Resources-+${i}`}
-                        onClick={() =>  HandleSetCurrentResourceCategory(key)}
-                        className="skill"                    >
-                        <div key={`Resources-${i}`} >
-                            <img
-                                className="skill-image"
-                                src={`./SkillSprites/${key}.png`}
-                                alt={key}
-
-                            />
-                            <div className="skill-text" >{key}</div>
-                        </div>
-
-                    </div>
-
-                );
-            });
-        } catch (error) {
-            return (
-                <div></div>
-            );
-        }
-    }, [HandleSetCurrentResourceCategory ,objectKeys]);
-
-
-
 
     useEffect(() => {
         const newAvailableSkills = parsedResources;
@@ -53,6 +19,35 @@ function ChangeSkill() {
         setAvailableSkills(newAvailableSkills);
         setObjectKeys(newObjectKeys);
     }, [availableSkills, parsedResources, currentResourceCategory,]);
+
+    const renderObjects = useCallback(() => {
+        try {
+            return objectKeys.map((key, i) => {
+                return (
+                    <div key={`Resources-+${i}`}
+                        onClick={() =>  methods.HandleSetCurrentResourceCategory(key)}
+                        className="skill"                    >
+                        <div key={`Resources-${i}`} >
+                            <img
+                                className="skill-image"
+                                src={`./SkillSprites/${key}.png`}
+                                alt={`./SkillSprites/${key}.png not found`}
+                            />
+                            <div className="skill-text" >{key}</div>
+                        </div>
+                    </div>
+                );
+            });
+        } catch (error) {
+            return (
+                <div></div>
+            );
+        }
+    }, [methods.HandleSetCurrentResourceCategory ,objectKeys]);
+
+
+
+
 
     return (
         <div className="sidebar">
@@ -64,4 +59,4 @@ function ChangeSkill() {
 }
 
 
-export default ChangeSkill;
+export default HandleSkillCategory;

@@ -60,7 +60,6 @@ function DisplayBank(){
                         <h1>
                             Bank is empty
                         </h1>
-
             );
         } catch (error) {
             return <h1>dun fucked up</h1>;

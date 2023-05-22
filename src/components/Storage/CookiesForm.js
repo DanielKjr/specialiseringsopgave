@@ -12,7 +12,7 @@ export default function HandleDeleteCookies(){
 
     return(
         <>
-            <button onClick={DeleteCookies}>Clear Cookies</button>
+            <button style={{ position: "relative", top: "840px"}} onClick={DeleteCookies}>Clear Cookies</button>
         </>
     );
 }

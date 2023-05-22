@@ -3,8 +3,8 @@ import HandleDeleteCookies, {SaveResourceCookies} from "../components/Storage/Co
 import UserComponent from "../components/Displays/UserComponent";
 import "../Styles/App.css"
 import "../Styles/MainView.css";
-import DisplaySidebar from "../components/Displays/SkillDisplay";
-import ShowBank from "../components/Functionality/ShowBank";
+import DisplaySidebar from "../components/Displays/MainDisplay";
+import ShowBank from "../components/Displays/ShowBank";
 import TimeCalculation from "../Hooks/TimeCalculation";
 import {ResourceContext} from "../components/Storage/ResourceProvider";
 
@@ -12,7 +12,7 @@ import {ResourceContext} from "../components/Storage/ResourceProvider";
 
 function App(){
 
-    const {parsedResources, currentResourceItem,currentResourceCategory} = useContext(ResourceContext);
+    const {parsedResources} = useContext(ResourceContext);
     const [hasLoaded, setHasLoaded] = useState(false);
     const HandleSetHasLoaded = ()=>{
         SaveResourceCookies(parsedResources);
@@ -25,7 +25,7 @@ function App(){
         {
             localStorage.setItem('lastVisitTime', new Date().getTime().toString());
         }
-    },[hasLoaded, parsedResources, currentResourceCategory, currentResourceItem]);
+    });
 
 
 
@@ -39,6 +39,7 @@ function App(){
                 <div className="sidebar" >
                     <ShowBank/>
                     <DisplaySidebar/>
+                    <HandleDeleteCookies/>
                 </div>
 
                 <div className="child-container">
@@ -47,11 +48,6 @@ function App(){
                     </div>
                     {!hasLoaded &&(<TimeCalculation HandleSetHasLoaded={HandleSetHasLoaded}/>)}
                 </div>
-
-                <div >
-                    <HandleDeleteCookies/>
-                </div>
-
             </div>
         );
 }

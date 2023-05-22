@@ -2,10 +2,11 @@ import {useContext, useEffect, useState} from "react";
 import {ResourceContext} from "../components/Storage/ResourceProvider";
 
 export default function TimeCalculation(props) {
-    const {HandleResourceIncrease} = useContext(ResourceContext);
+    const {methods} = useContext(ResourceContext);
     const [lastVisitTime, setLastVisitTime] = useState(GetStorage('lastVisitTime') || null);
     const [numIntervals, setNumIntervals] = useState(0);
     const [now, setNow] = useState(new Date().getTime());
+    const [awayTimer, setAwayTimer] = useState((now - lastVisitTime) / 1000);
     const maxInterval = 500;
 
     useEffect(() => {
@@ -32,8 +33,8 @@ export default function TimeCalculation(props) {
         const storedTime = GetStorage('lastVisitTime');
         if (storedTime) {
             const lastVisit = new Date(parseInt(storedTime, 10)).getTime();
-            const timeDifference = now - lastVisit;
-            setNumIntervals(Math.floor(timeDifference / 15000));
+            setAwayTimer((now - lastVisit)/ 1000 );
+            setNumIntervals(Math.floor(awayTimer / 15));
         }
     }
 
@@ -43,7 +44,7 @@ export default function TimeCalculation(props) {
                 setNumIntervals(maxInterval);
 
                 //TODO either limit this to only be gathering or add a recipe check
-                HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals);
+            methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals);
                 SetStorage('lastVisitTime', now.toString());
         }
     }
@@ -59,6 +60,7 @@ export default function TimeCalculation(props) {
 
                     <div style={{backgroundColor: "white", padding: "20px", borderRadius: "5px", textAlign: "center"}}>
                         <h2>While you were gone you've received:</h2>
+                        <h3>You were gone for: {Math.round(awayTimer)} Seconds</h3>
                         <div>
                             <img
                                 src={`./ResourceSprites/${GetStorage('lastResourceCategory')}/${GetStorage('lastResourceItem')}.png`}
