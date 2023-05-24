@@ -38,10 +38,7 @@ function HandleSkillCategory() {
                 );
             });
     }, [methods.HandleSetCurrentResourceCategory ,objectKeys]);
-
-
-
-
+    
 
     return (
         <div className="sidebar">
