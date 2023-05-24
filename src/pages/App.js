@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from "react";
 import HandleDeleteCookies, {SaveResourceCookies} from "../components/Storage/CookiesForm";
-import UserComponent from "../components/Displays/UserComponent";
+import GameFlowComponent from "../components/Displays/GameFlowComponent";
 import "../Styles/App.css"
 import "../Styles/MainView.css";
-import DisplaySidebar from "../components/Displays/MainDisplay";
 import ShowBank from "../components/Displays/ShowBank";
 import TimeCalculation from "../Hooks/TimeCalculation";
 import {ResourceContext} from "../components/Storage/ResourceProvider";
+import HandleSkillCategory from "../components/Functionality/HandleSkillCategory";
 
 
 
@@ -27,9 +27,6 @@ function App(){
         }
     });
 
-
-
-
     return(
             <div className="parent-container">
                 <div className="header">
@@ -38,13 +35,13 @@ function App(){
 
                 <div className="sidebar" >
                     <ShowBank/>
-                    <DisplaySidebar/>
+                    <HandleSkillCategory/>
                     <HandleDeleteCookies/>
                 </div>
 
                 <div className="child-container">
                     <div className="content">
-                        <UserComponent />
+                        <GameFlowComponent />
                     </div>
                     {!hasLoaded &&(<TimeCalculation HandleSetHasLoaded={HandleSetHasLoaded}/>)}
                 </div>

@@ -2,9 +2,7 @@ import {useContext, useEffect, useState} from "react";
 import ResourceTask from "./ResourceTask";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import CraftingTask from "./CraftingTask";
-import SkillDisplay from "../Displays/MainDisplay";
-import craftingTask from "./CraftingTask";
-import recipes from "../../services/Recipes";
+
 
 
 function ResourceGather(){
@@ -12,7 +10,6 @@ function ResourceGather(){
     const {
         currentResourceCategory,
         currentResourceItem,
-        parsedResources,
         amount,
         methods
     } = useContext(ResourceContext);
@@ -60,8 +57,6 @@ function ResourceGather(){
                                   amount={amount}
                                   HandleResourceIncrease={methods.HandleResourceIncrease}
                     />
-                    <br/>
-                    <br/>
                     <button  onClick={handleSetGathering}>StartGather</button>
                 </div>
             ):

@@ -3,11 +3,11 @@ import {ResourceContext} from "../components/Storage/ResourceProvider";
 
 export default function TimeCalculation(props) {
     const {methods} = useContext(ResourceContext);
-    const [lastVisitTime, setLastVisitTime] = useState(GetStorage('lastVisitTime') || null);
+    const lastVisitTime= GetStorage('lastVisitTime');
     const [numIntervals, setNumIntervals] = useState(0);
     const [now, setNow] = useState(new Date().getTime());
     const [awayTimer, setAwayTimer] = useState((now - lastVisitTime) / 1000);
-    const maxInterval = 500;
+    const maxInterval = 100;
 
     useEffect(() => {
         setNow(new Date().getTime());
@@ -38,15 +38,32 @@ export default function TimeCalculation(props) {
         }
     }
 
-    function UpdateResources() {
-        if (numIntervals >= 1) {
-            if(numIntervals >= maxInterval)
-                setNumIntervals(maxInterval);
+    // function UpdateResources(){
+    //     if(numIntervals >= 1)
+    //     {
+    //         if(numIntervals >= maxInterval)
+    //         {
+    //             methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), maxInterval);
+    //         }
+    //         else
+    //         {
+    //             methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals);
+    //         }
+    //         SetStorage('lastVisitTime', now.toString());
+    //     }
+    // }
 
-                //TODO either limit this to only be gathering or add a recipe check
-            methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals);
-                SetStorage('lastVisitTime', now.toString());
-        }
+    function UpdateResources() {
+            numIntervals >= 1 ?
+                numIntervals >= maxInterval ?
+                  methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), maxInterval) &&
+                  SetStorage('lastVisitTime', now.toString())
+                  :
+                   methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals)&&
+                   SetStorage('lastVisitTime', now.toString())
+            :  console.log(); //had to have something there
+
+
     }
 
     return (
@@ -64,7 +81,7 @@ export default function TimeCalculation(props) {
                         <div>
                             <img
                                 src={`./ResourceSprites/${GetStorage('lastResourceCategory')}/${GetStorage('lastResourceItem')}.png`}
-                                alt="bad path"
+                                alt={`./ResourceSprites/${GetStorage('lastResourceCategory')}/${GetStorage('lastResourceItem')}.png not found`}
                             />
                             <p>{numIntervals} {GetStorage('lastResourceItem')}.</p>
                         </div>

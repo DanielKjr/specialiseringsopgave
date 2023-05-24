@@ -1,14 +1,14 @@
 import React, {useContext, useEffect} from "react";
 import {SaveResourceCookies} from "../Storage/CookiesForm";
 import ResourceGather from "../Functionality/ResourceGather";
-import {DisplaySkillItems} from "./MainDisplay";
 import "../../Styles/MainView.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import DisplayBank from "./DisplayBank";
+import HandleSkillItem from "../Functionality/HandleSkillItem";
 
 
 
-function UserComponent() {
+function GameFlowComponent() {
 
     const {
         currentResourceCategory,
@@ -28,19 +28,19 @@ function UserComponent() {
         HandleSave();
     }, [currentResourceCategory, currentResourceItem, parsedResources])
 
-    return currentResourceCategory !== "Bank" ? (
+    return currentResourceCategory !== "Bank" ?
         <>
             <ResourceGather/>
             <div className="skill-container">
-                <DisplaySkillItems/>
+                <HandleSkillItem/>
             </div>
             <button onClick={HandleSave}>Save Progress</button>
         </>
-    ) :
+     :
         <div className="bank-container">
             <DisplayBank/>
         </div>
 }
 
-export default UserComponent;
+export default GameFlowComponent;
 

@@ -2,7 +2,6 @@ import {useCallback, useContext, useEffect, useState} from "react";
 import {ResourceContext} from "../Storage/ResourceProvider";
 
 
-// export default function useSkillDisplay(availableItems ,objectKeys,{onClick}){
 export default function SkillDisplay(props){
     const {
         currentResourceCategory,
@@ -25,7 +24,6 @@ export default function SkillDisplay(props){
     }
 
     const renderObjects = useCallback(() => {
-        try {
             return keys.map((key, i) => {
                 return (
                     <div key={`Resources-+${i}`}
@@ -42,11 +40,6 @@ export default function SkillDisplay(props){
                     </div>
                 );
             });
-        } catch (error) {
-            return (
-                <div></div>
-            );
-        }
     }, [keys, parsedResources]);
 
 

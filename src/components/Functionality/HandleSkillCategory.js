@@ -21,7 +21,6 @@ function HandleSkillCategory() {
     }, [availableSkills, parsedResources, currentResourceCategory,]);
 
     const renderObjects = useCallback(() => {
-        try {
             return objectKeys.map((key, i) => {
                 return (
                     <div key={`Resources-+${i}`}
@@ -38,11 +37,6 @@ function HandleSkillCategory() {
                     </div>
                 );
             });
-        } catch (error) {
-            return (
-                <div></div>
-            );
-        }
     }, [methods.HandleSetCurrentResourceCategory ,objectKeys]);
 
 

@@ -1,4 +1,4 @@
-import {useCallback, useContext, useEffect, useState} from "react";
+import {useContext, useState} from "react";
 import "../../Styles/SkillDisplay.css";
 import "../../Styles/App.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
