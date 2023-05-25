@@ -1,0 +1,14 @@
+
+
+.welcome-container{
+    position: relative;
+    background-color: #858282;
+    height: 100vh;
+    width: 100%;
+}
+
+.welcome-text{
+    display: grid;
+    justify-content: center;
+    padding: 10px;
+}

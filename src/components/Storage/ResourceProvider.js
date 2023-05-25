@@ -1,17 +1,17 @@
 import React, {useContext, useEffect, useState} from "react";
-import Enums from "../../assets/Enums";
+import Enums from "../../Constants/Enums";
 import {CookiesContext} from "./CookiesProvider";
 import {SaveResourceCookies} from "./CookiesForm";
-import recipes from "../../services/Recipes";
+import recipes from "../../Constants/Recipes";
 
 const ResourceContext = React.createContext({});
 
 function ResourceProvider(props){
     const {resources, updateResources} = useContext(CookiesContext);
-    const [currentResourceCategory, setCurrentResourceCategory] = useState(Enums.ResourceEnum.MINING);
-    const [currentResourceItem, setCurrentResourceItem] = useState(Enums.MiningEnum.TIN);
-    const [previousResourceItem, setPreviousResourceItem] = useState(localStorage.getItem('lastResourceItem'));
-    const [previousResourceCategory, setPreviousResourceCategory] = useState(localStorage.getItem('lastResourceCategory'));
+    const [currentResourceCategory, setCurrentResourceCategory] = useState(localStorage.getItem('lastResourceCategory') ||Enums.ResourceEnum.MINING);
+    const [currentResourceItem, setCurrentResourceItem] = useState(localStorage.getItem('lastResourceItem') ||Enums.MiningEnum.TIN);
+    const [previousResourceItem, setPreviousResourceItem] = useState(localStorage.getItem('lastResourceItem')||null);
+    const [previousResourceCategory, setPreviousResourceCategory] = useState(localStorage.getItem('lastResourceCategory')|| null);
     const [amount, setAmount] = useState(1);
     const [bank, setBank] = useState(resources);
     const parsedResources = JSON.parse(resources);
@@ -41,10 +41,10 @@ function ResourceProvider(props){
     }
 
     const HandleSetPreviousResourceInfo = () => {
-        setPreviousResourceItem(currentResourceItem);
         if(currentResourceCategory !== "Bank")
         {
             setPreviousResourceCategory(currentResourceCategory);
+            setPreviousResourceItem(currentResourceItem);
         }
     }
 
@@ -57,9 +57,16 @@ function ResourceProvider(props){
 
     }
     const HandleResourceIncrease = (category, item , amount) =>{
-        console.log("Category: " + category, "item: " + item, "Amount: " + amount);
-        parsedResources[category][item].amount += amount;
-        updateResources(parsedResources);
+        try{
+            console.log("Category: " + category, "item: " + item, "Amount: " + amount);
+            parsedResources[category][item].amount += amount;
+            updateResources(parsedResources);
+        }
+        catch (e)
+        {   //in case of mismatch of categories and item clear the local storage
+            localStorage.clear();
+        }
+
     }
     const HandleResourceDecrease = (category, item , amount) =>{
             parsedResources[category][item].amount -= amount;

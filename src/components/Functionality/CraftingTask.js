@@ -1,10 +1,6 @@
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../Displays/ProgressBar";
 import React, {useCallback, useEffect, useState} from "react";
-import useTask from "../../Hooks/useTask";
-
-
-
-
+import useTaskProgress from "../../Hooks/useTaskProgress";
 
 function CraftingTask({category, item, isCrafting, handleCheckRecipeRequirement}) {
 
@@ -21,7 +17,7 @@ function CraftingTask({category, item, isCrafting, handleCheckRecipeRequirement}
     const task = useCallback(() => {
         let i = 0;
         const interval = setInterval(() => {
-                setProgress(i+=10);
+                setProgress(i+=2);
                 if (i === 100) {
                     clearInterval(interval);
                     if(isActive)
@@ -33,12 +29,11 @@ function CraftingTask({category, item, isCrafting, handleCheckRecipeRequirement}
     }, [isActive ,category, item, handleCheckRecipeRequirement]);
 
     //custom hook to avoid repeating useEffect code
-    useTask(isActive, task, setProgress);
+    useTaskProgress(isActive, task, setProgress);
 
     return (
                 <ProgressBar
                     progress={progress}
-                    item={item}
                     style={{ width: `${progress}%`}}>
                 </ProgressBar>
     );

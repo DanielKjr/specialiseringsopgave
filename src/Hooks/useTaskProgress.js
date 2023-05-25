@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function useTask(isActive, task, setProgress) {
+function useTaskProgress(isActive, task, setProgress) {
     useEffect(() => {
         let intervalId = null;
 
@@ -18,4 +18,4 @@ function useTask(isActive, task, setProgress) {
     }, [isActive, task, setProgress]);
 }
 
-export default useTask;
+export default useTaskProgress;

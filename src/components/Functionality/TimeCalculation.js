@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from "react";
-import {ResourceContext} from "../components/Storage/ResourceProvider";
+import {ResourceContext} from "../Storage/ResourceProvider";
+import "../../Styles/PopUp.css"
 
 export default function TimeCalculation(props) {
     const {methods} = useContext(ResourceContext);
@@ -14,7 +15,7 @@ export default function TimeCalculation(props) {
         CalculateTicks();
         UpdateResources();
 
-    }, [numIntervals, lastVisitTime])
+    }, [numIntervals,lastVisitTime])
 
 
     function GetStorage(name){
@@ -44,12 +45,14 @@ export default function TimeCalculation(props) {
     //         if(numIntervals >= maxInterval)
     //         {
     //             methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), maxInterval);
+    //             SetStorage('lastVisitTime', now.toString());
     //         }
     //         else
     //         {
     //             methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals);
+    //             SetStorage('lastVisitTime', now.toString());
     //         }
-    //         SetStorage('lastVisitTime', now.toString());
+    //
     //     }
     // }
 
@@ -57,10 +60,11 @@ export default function TimeCalculation(props) {
             numIntervals >= 1 ?
                 numIntervals >= maxInterval ?
                   methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), maxInterval) &&
-                  SetStorage('lastVisitTime', now.toString())
+                    SetStorage('lastVisitTime', now.toString())
                   :
-                   methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals)&&
-                   SetStorage('lastVisitTime', now.toString())
+                   methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals) &&
+                    SetStorage('lastVisitTime', now.toString())
+
             :  console.log(); //had to have something there
 
 
@@ -69,21 +73,25 @@ export default function TimeCalculation(props) {
     return (
         <>
             {numIntervals !== 0 && (
-                <div style={{
-                    position: "absolute", top: 0, left: 0,
-                    width: "100%", height: "100%",
-                    backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex",
-                    justifyContent: "center", alignItems: "center"}}>
+                <div className="popup"
+                    // style={{
+                    // position: "absolute", top: 0, left: 0,
+                    // width: "100%", height: "100%",
+                    // backgroundColor: "rgba(0, 0, 0, 0.5)", display: "flex",
+                    // justifyContent: "center", alignItems: "center"}}
+                     >
 
-                    <div style={{backgroundColor: "white", padding: "20px", borderRadius: "5px", textAlign: "center"}}>
+                    <div className="popup-text"
+                        // style={{backgroundColor: "white", padding: "20px", borderRadius: "5px", textAlign: "center"}}
+                    >
                         <h2>While you were gone you've received:</h2>
-                        <h3>You were gone for: {Math.round(awayTimer)} Seconds</h3>
                         <div>
-                            <img
+                            <img className="resourceGain-Image"
                                 src={`./ResourceSprites/${GetStorage('lastResourceCategory')}/${GetStorage('lastResourceItem')}.png`}
                                 alt={`./ResourceSprites/${GetStorage('lastResourceCategory')}/${GetStorage('lastResourceItem')}.png not found`}
                             />
-                            <p>{numIntervals} {GetStorage('lastResourceItem')}.</p>
+                            <h2>{numIntervals >= maxInterval ? maxInterval: numIntervals} {GetStorage('lastResourceItem')}.</h2>
+                            <h4>You were gone for: {Math.round(awayTimer)} Seconds</h4>
                         </div>
                         <button onClick={() => SetLocalStorage()}>OK</button>
                     </div>

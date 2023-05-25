@@ -37,8 +37,8 @@ function HandleSkillCategory() {
                     </div>
                 );
             });
-    }, [methods.HandleSetCurrentResourceCategory ,objectKeys]);
-    
+    }, [objectKeys]);
+
 
     return (
         <div className="sidebar">

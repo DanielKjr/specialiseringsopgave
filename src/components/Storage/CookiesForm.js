@@ -1,18 +1,36 @@
 import Cookies from "js-cookie";
-import React from "react";
-
+import React, {useState} from "react";
+import "../../Styles/PopUp.css"
 
 
 export default function HandleDeleteCookies(){
+    const [confirmation, setConfirmation] = useState(false);
     function DeleteCookies(){
         Cookies.remove('userName');
         Cookies.remove('resources');
+        localStorage.clear();
         window.location.reload();
+    }
+
+    function Confirmation()
+    {
+        setConfirmation(!confirmation);
     }
 
     return(
         <>
-            <button style={{ position: "relative", top: "840px"}} onClick={DeleteCookies}>Clear Cookies</button>
+            <button  onClick={Confirmation}>Clear Cookies</button>
+            {confirmation && (
+                <div className="popup">
+                    <div className="popup-text">
+                        <h1>You are about to delete all saved data.</h1>
+                        <h1>Are you sure?</h1>
+                        <button onClick={DeleteCookies}>Delete</button>
+                        <button onClick={Confirmation}>Go back</button>
+                    </div>
+                </div>
+
+            )}
         </>
     );
 }

@@ -4,13 +4,18 @@ import App from "./pages/App";
 import {ResourceProvider} from "./components/Storage/ResourceProvider";
 import {CookieProvider} from "./components/Storage/CookiesProvider";
 import {CookiesExist} from "./components/Storage/CookiesForm";
-import WelcomeScreenComponent from "./pages/WelcomeScreenComponent";
+import WelcomeScreenComponent from "./components/Displays/WelcomeScreenComponent";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-if(CookiesExist())
-{
+if (CookiesExist()) {
+    if(localStorage.getItem('lastVisitTime') === null)
+    {
+        localStorage.setItem('lastVisitTime', new Date().getTime().toString());
+    }
+
+
     root.render(
         <React.StrictMode>
             <CookieProvider>
@@ -20,9 +25,10 @@ if(CookiesExist())
             </CookieProvider>
         </React.StrictMode>
     );
-}
-else {
+} else {
     root.render(
         <WelcomeScreenComponent/>
     );
 }
+
+

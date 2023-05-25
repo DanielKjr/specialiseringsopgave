@@ -40,11 +40,11 @@
 .sidebar {
     background-color: #3a2e2e;
     padding: 2px;
-    grid-area: sidebar; /* Place the sidebar in the grid area named "sidebar" */
+    grid-area: sidebar;
     font-size: 20px;
 }
 
 .content {
     padding: 5px;
-    grid-area: content; /* Place the main content in the grid area named "content" */
+    grid-area: content;
 }

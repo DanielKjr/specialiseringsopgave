@@ -1,6 +1,6 @@
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../Displays/ProgressBar";
 import React, {useCallback,useEffect, useState} from "react";
-import useTask from "../../Hooks/useTask";
+import useTaskProgress from "../../Hooks/useTaskProgress";
 
 
 function ResourceTask({category, item, amount, HandleResourceIncrease, isGathering}) {
@@ -17,7 +17,7 @@ function ResourceTask({category, item, amount, HandleResourceIncrease, isGatheri
     const task = useCallback(() => {
         let i = 0;
         const interval = setInterval(() => {
-            setProgress(i += 10);
+            setProgress(i += 2);
 
             if (i === 100) {
                 clearInterval(interval);
@@ -32,7 +32,7 @@ function ResourceTask({category, item, amount, HandleResourceIncrease, isGatheri
     }, [isActive, category, item, amount, HandleResourceIncrease]);
 
 
-    useTask(isActive, task, setProgress);
+    useTaskProgress(isActive, task, setProgress);
 
 
 

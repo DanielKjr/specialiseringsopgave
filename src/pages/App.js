@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from "react";
 import HandleDeleteCookies, {SaveResourceCookies} from "../components/Storage/CookiesForm";
-import GameFlowComponent from "../components/Displays/GameFlowComponent";
+import PlayerControlComponent from "../components/Displays/PlayerControlComponent";
 import "../Styles/App.css"
 import "../Styles/MainView.css";
 import ShowBank from "../components/Displays/ShowBank";
-import TimeCalculation from "../Hooks/TimeCalculation";
+import TimeCalculation from "../components/Functionality/TimeCalculation";
 import {ResourceContext} from "../components/Storage/ResourceProvider";
 import HandleSkillCategory from "../components/Functionality/HandleSkillCategory";
 
@@ -39,9 +39,9 @@ function App(){
                     <HandleDeleteCookies/>
                 </div>
 
-                <div className="child-container">
-                    <div className="content">
-                        <GameFlowComponent />
+                <div className="main">
+                    <div className="child-container">
+                        <PlayerControlComponent />
                     </div>
                     {!hasLoaded &&(<TimeCalculation HandleSetHasLoaded={HandleSetHasLoaded}/>)}
                 </div>

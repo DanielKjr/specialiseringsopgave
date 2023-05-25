@@ -8,7 +8,7 @@ import HandleSkillItem from "../Functionality/HandleSkillItem";
 
 
 
-function GameFlowComponent() {
+function PlayerControlComponent() {
 
     const {
         currentResourceCategory,
@@ -29,18 +29,18 @@ function GameFlowComponent() {
     }, [currentResourceCategory, currentResourceItem, parsedResources])
 
     return currentResourceCategory !== "Bank" ?
-        <>
+        <div className="content">
             <ResourceGather/>
             <div className="skill-container">
                 <HandleSkillItem/>
             </div>
             <button onClick={HandleSave}>Save Progress</button>
-        </>
+        </div>
      :
         <div className="bank-container">
             <DisplayBank/>
         </div>
 }
 
-export default GameFlowComponent;
+export default PlayerControlComponent;
 
