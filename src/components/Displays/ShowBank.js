@@ -3,6 +3,7 @@ import {ResourceContext} from "../Storage/ResourceProvider";
 import "../../Styles/SkillDisplay.css";
 
 
+//Similar to the HandleSkillCategory this displays the bank tab if clicked.
 function ShowBank() {
     const {methods} = useContext(ResourceContext);
 

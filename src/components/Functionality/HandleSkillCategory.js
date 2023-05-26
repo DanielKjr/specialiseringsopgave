@@ -3,6 +3,7 @@ import "../../Styles/SkillDisplay.css";
 import "../../Styles/App.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
 
+//Handles the display and interactions of the Skill categories
 function HandleSkillCategory() {
     const {
         currentResourceCategory,

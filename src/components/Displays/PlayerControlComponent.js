@@ -7,19 +7,23 @@ import DisplayBank from "./DisplayBank";
 import HandleSkillItem from "../Functionality/HandleSkillItem";
 
 
-
+//Displays the core functionality of gathering resources, handling of skills and display of bank. Also, responsible for saving progress.
 function PlayerControlComponent() {
 
     const {
         currentResourceCategory,
         currentResourceItem,
         parsedResources,
+        methods
     } = useContext(ResourceContext);
 
     function HandleSave() {
         SaveResourceCookies(parsedResources);
-        localStorage.setItem('lastResourceCategory', currentResourceCategory);
-        localStorage.setItem('lastResourceItem', currentResourceItem);
+        if(methods.HandleCategoryMisMatchCheck(currentResourceCategory, currentResourceItem))
+        {
+            localStorage.setItem('lastResourceCategory', currentResourceCategory);
+            localStorage.setItem('lastResourceItem', currentResourceItem);
+        }
         localStorage.setItem('lastTimeVisited', new Date().getTime().toString());
     }
 
@@ -27,6 +31,7 @@ function PlayerControlComponent() {
     useEffect(() => {
         HandleSave();
     }, [currentResourceCategory, currentResourceItem, parsedResources])
+
 
     return currentResourceCategory !== "Bank" ?
         <div className="content">

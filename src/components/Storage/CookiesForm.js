@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import React, {useState} from "react";
 import "../../Styles/PopUp.css"
 
-
+//Provides a button to clear cookies, which is equal to deleting the saved data.
 export default function HandleDeleteCookies(){
     const [confirmation, setConfirmation] = useState(false);
     function DeleteCookies(){

@@ -6,12 +6,13 @@ import recipes from "../../Constants/Recipes";
 
 const ResourceContext = React.createContext({});
 
+//Provides all the functionality regarding the resources in this app, so that any component can make use of the functionality without having to repeat code.
 function ResourceProvider(props){
     const {resources, updateResources} = useContext(CookiesContext);
     const [currentResourceCategory, setCurrentResourceCategory] = useState(localStorage.getItem('lastResourceCategory') ||Enums.ResourceEnum.MINING);
     const [currentResourceItem, setCurrentResourceItem] = useState(localStorage.getItem('lastResourceItem') ||Enums.MiningEnum.TIN);
-    const [previousResourceItem, setPreviousResourceItem] = useState(localStorage.getItem('lastResourceItem')||null);
-    const [previousResourceCategory, setPreviousResourceCategory] = useState(localStorage.getItem('lastResourceCategory')|| null);
+    const [previousResourceItem, setPreviousResourceItem] = useState(localStorage.getItem('lastResourceItem'));
+    const [previousResourceCategory, setPreviousResourceCategory] = useState(localStorage.getItem('lastResourceCategory'));
     const [amount, setAmount] = useState(1);
     const [bank, setBank] = useState(resources);
     const parsedResources = JSON.parse(resources);
@@ -20,6 +21,7 @@ function ResourceProvider(props){
         if(bank !== resources)
             setBank(resources);
     },[bank, resources])
+
     const HandleSave = () => {
         SaveResourceCookies(parsedResources);
     }
@@ -36,18 +38,26 @@ function ResourceProvider(props){
             setCurrentResourceItem(Object.keys(parsedResources[category])[0]);
         }
         else{
-            setCurrentResourceCategory(category);
+                setCurrentResourceCategory(category);
         }
     }
 
     const HandleSetPreviousResourceInfo = () => {
-        if(currentResourceCategory !== "Bank")
+        if(HandleCategoryMisMatchCheck(currentResourceCategory, currentResourceItem))
         {
             setPreviousResourceCategory(currentResourceCategory);
             setPreviousResourceItem(currentResourceItem);
         }
     }
-
+    const HandleCategoryMisMatchCheck = (category, item) => {
+        try{
+            return parsedResources[category][item].amount !== undefined;
+        }
+        catch (e)
+        {
+            return false;
+        }
+    }
     const HandleSetBankView = (category) => {
         setCurrentResourceCategory(category);
     }
@@ -72,6 +82,8 @@ function ResourceProvider(props){
             parsedResources[category][item].amount -= amount;
         updateResources(parsedResources);
     }
+
+
 
     //TODO should probably split this to different component
     const HandleCheckIfRecipeExists = (category) => {
@@ -163,7 +175,8 @@ function ResourceProvider(props){
             HandleCheckRecipeRequirement,
             HandleCheckCanCraft,
             GetCraftingRequirements,
-            HandleDetermineRecipeSubset
+            HandleDetermineRecipeSubset,
+            HandleCategoryMisMatchCheck
         }
     };
 

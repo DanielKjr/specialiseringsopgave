@@ -4,6 +4,7 @@ import "../../Styles/App.css";
 import "../../Styles/Bank.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
 
+//Displays the content of the players Bank similarly to how skill items are displayed.
 function DisplayBank(){
     const {
         bank
@@ -12,12 +13,9 @@ function DisplayBank(){
 
     const [keyValues, setKeyValues] = useState(Object.values(JSON.parse(bank)));
 
-    const handleOnClick = (msg) => {
-        console.log(msg);
-    }
 
     const renderBank = useCallback(() => {
-        try {
+
             let count = 0;
             const bankItems = keyValues.map((key, i) => {
                 const sprites = [];
@@ -38,7 +36,6 @@ function DisplayBank(){
                                 amounts[j] >= 1 && (
                                     <div key={`Bank-${i}-img-${j}`} className="bank-item">
                                         <img
-                                            onClick={() => handleOnClick(sprite)}
                                             className="bank-item"
                                             src={`./ResourceSprites/${sprite}.png`}
                                             alt="Missing img"
@@ -61,16 +58,13 @@ function DisplayBank(){
                             Bank is empty
                         </h1>
             );
-        } catch (error) {
-            return <h1>dun fucked up</h1>;
-        }
+
     }, [keyValues]);
 
 
 
 
     useEffect(() =>{
-
         setKeyValues(Object.values(JSON.parse(bank)));
     }, [ bank])
 

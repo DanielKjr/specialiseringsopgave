@@ -3,6 +3,7 @@ import {GetNameCookie, GetResourceCookie } from "./CookiesForm";
 
 const CookiesContext = React.createContext({});
 
+//Provides access to information stored in cookies, most importantly the resources.
 function CookieProvider(props){
     const [userName, setUserName] = useState(GetNameCookie());
     const [resources, setResources] = useState(GetResourceCookie());

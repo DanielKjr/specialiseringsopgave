@@ -6,6 +6,7 @@ import SkillDisplay from "../Displays/skillDisplay";
 
 
 
+//Handles the currently selected skill item
 function HandleSkillItem(){
     const {
         currentResourceCategory,

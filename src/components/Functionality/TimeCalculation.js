@@ -2,6 +2,8 @@ import {useContext, useEffect, useState} from "react";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import "../../Styles/PopUp.css"
 
+//Calculates how many "ticks" the player has been gone for and gives offline progression for each tick.
+//This is calculated through saved date values in localStorage
 export default function TimeCalculation(props) {
     const {methods} = useContext(ResourceContext);
     const lastVisitTime= GetStorage('lastVisitTime');

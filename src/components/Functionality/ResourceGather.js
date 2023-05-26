@@ -4,7 +4,8 @@ import {ResourceContext} from "../Storage/ResourceProvider";
 import CraftingTask from "./CraftingTask";
 
 
-
+//Handles the start of resource tasks, if no recipe is found on the targeted resource it returns a ResourceTask component.
+//If a recipe is found it returns the requirements as well as a CraftingTask component.
 function ResourceGather(){
 
     const {
@@ -74,14 +75,8 @@ function ResourceGather(){
                                 </h1>
 
                             </div>
-
-
                         ))}
-
-
                     </div>
-
-
                     <CraftingTask isCrafting={isCrafting}
                                   category={currentCategory}
                                   item={currentItem}
@@ -90,7 +85,6 @@ function ResourceGather(){
                                   handleCheckRecipeRequirement={methods.HandleCheckRecipeRequirement}
                     />
                     <button  onClick={handleSetCrafting}>Start Crafting</button>
-
                 </div>}
         </>
 

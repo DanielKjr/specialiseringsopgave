@@ -8,8 +8,6 @@ import TimeCalculation from "../components/Functionality/TimeCalculation";
 import {ResourceContext} from "../components/Storage/ResourceProvider";
 import HandleSkillCategory from "../components/Functionality/HandleSkillCategory";
 
-
-
 function App(){
 
     const {parsedResources} = useContext(ResourceContext);
