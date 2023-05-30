@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useCallback, useContext, useEffect, useState} from "react";
 import HandleDeleteCookies, {SaveResourceCookies} from "../components/Storage/CookiesForm";
 import PlayerControlComponent from "../components/Displays/PlayerControlComponent";
 import "../Styles/App.css"
@@ -7,16 +7,21 @@ import ShowBank from "../components/Displays/ShowBank";
 import TimeCalculation from "../components/Functionality/TimeCalculation";
 import {ResourceContext} from "../components/Storage/ResourceProvider";
 import HandleSkillCategory from "../components/Functionality/HandleSkillCategory";
+import ResourceGather from "../components/Functionality/ResourceGather";
+import Fadeout from "../Hooks/FadeOut";
 
 function App(){
 
-    const {parsedResources} = useContext(ResourceContext);
+    const {parsedResources, currentResourceCategory, currentResourceItem} = useContext(ResourceContext);
     const [hasLoaded, setHasLoaded] = useState(false);
     const HandleSetHasLoaded = ()=>{
         SaveResourceCookies(parsedResources);
         setHasLoaded(true);
     }
+    const fade  = useCallback(() => {
 
+        return ( <Fadeout image={`./ResourceSprites/${currentResourceCategory}/${currentResourceItem}.png`}/>);
+    }, [parsedResources])
     //if hasLoaded then update the lastVisitTime constantly, so you don't get offline progression
     useEffect(() => {
         if(hasLoaded)
@@ -39,7 +44,9 @@ function App(){
 
                 <div className="main">
                     <div className="child-container">
+                        <ResourceGather/>
                         <PlayerControlComponent />
+                        {/*{fade()}*/}
                     </div>
                     {!hasLoaded &&(<TimeCalculation HandleSetHasLoaded={HandleSetHasLoaded}/>)}
                 </div>

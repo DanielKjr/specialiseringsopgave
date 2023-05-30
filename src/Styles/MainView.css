@@ -28,10 +28,6 @@
 }
 
 .child-container {
-    /* commented out while I figure out if I should keep it as a grid*/
-    /*display: grid;*/
-    /*grid-template-rows: 1fr; !* The child container takes up all available vertical space *!*/
-    /*grid-template-columns: 10% 1fr; !* The first column takes 10% of the width *!*/
     background-color: #858282;
     grid-template-areas:
     "sidebar content"; /* Reference the names of the grid areas from the parent grid */

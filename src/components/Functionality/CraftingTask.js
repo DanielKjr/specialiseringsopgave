@@ -4,17 +4,12 @@ import useTaskProgress from "../../Hooks/useTaskProgress";
 
 //Similar to ResourceTask but utilizes the recipe requirement checks and handling of resources.
 function CraftingTask({category, item, isCrafting, handleCheckRecipeRequirement}) {
-
-
     const [progress, setProgress] = useState(0);
     const [isActive, setIsActive] = useState(isCrafting);
-
     //update value when parent value changes
     useEffect(() => {
         setIsActive(isCrafting);
     }, [isCrafting]);
-
-
     const task = useCallback(() => {
         let i = 0;
         const interval = setInterval(() => {

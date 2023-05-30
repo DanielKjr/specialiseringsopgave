@@ -1,7 +1,6 @@
 import {useCallback, useContext, useEffect, useState} from "react";
 import {ResourceContext} from "../Storage/ResourceProvider";
 
-
 export default function SkillDisplay(props){
     const {
         currentResourceCategory,

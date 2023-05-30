@@ -1,0 +1,37 @@
+.skill-requirementContainer{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.skill-requirement{
+    position: relative;
+    font-size: 15px;
+    bottom: 5px;
+    left: 5px;
+}
+
+.skill-requirementText{
+    position: relative;
+    bottom: 22px;
+    left: 10px;
+    color: white;
+    font: 20px "Courier New", sans-serif;
+}
+
+.requirement-image{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    right: 4px;
+    vertical-align: center;
+    horiz-align: center;
+}
+
+.resourceGain-Image{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    vertical-align: center;
+    horiz-align: center;
+}

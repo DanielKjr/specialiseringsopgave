@@ -6,8 +6,7 @@
     background-color: #5f605d;
     position: relative;
     grid-auto-flow: column;
-
-
+    gap: 10px;
 }
 
 .bank-item{
@@ -15,8 +14,6 @@
     width: 60px;
     height: 60px;
     display: grid;
-
-
 }
 
 .bank-item:hover{
@@ -34,3 +31,24 @@
 
 }
 
+
+.tooltip{
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltipText{
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+.bank-item:hover .tooltipText{
+    visibility: visible;
+}

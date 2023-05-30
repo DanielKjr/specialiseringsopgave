@@ -40,6 +40,7 @@ function DisplayBank(){
                                             src={`./ResourceSprites/${sprite}.png`}
                                             alt="Missing img"
                                         />
+                                        <span className="tooltipText">{sprite}</span>
                                         <div className="bank-text">
                                             {amounts[j]}
                                         </div>

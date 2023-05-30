@@ -1,8 +1,9 @@
-import {useContext, useEffect, useState} from "react";
+import {useCallback, useContext, useEffect, useState} from "react";
 import ResourceTask from "./ResourceTask";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import CraftingTask from "./CraftingTask";
-
+import Fadeout from "../../Hooks/FadeOut";
+import "../../Styles/Requirements.css";
 
 //Handles the start of resource tasks, if no recipe is found on the targeted resource it returns a ResourceTask component.
 //If a recipe is found it returns the requirements as well as a CraftingTask component.
@@ -14,6 +15,7 @@ function ResourceGather(){
         amount,
         methods
     } = useContext(ResourceContext);
+    // TODO maybe move the isGathering outside the component
     const [isGathering, setIsGathering] = useState(false);
     const [isCrafting, setIsCrafting] = useState(false);
     const [currentItem, setCurrentItem] = useState(currentResourceItem);
@@ -27,6 +29,7 @@ function ResourceGather(){
         }
 
     }, [currentCategory, currentItem,methods.HandleCheckIfRecipeExists])
+
     function HandleSetCraftingRequirements(){
         setCraftingRequirements(methods.GetCraftingRequirements(currentCategory, currentItem));
     }
@@ -40,8 +43,12 @@ function ResourceGather(){
 
 
     useEffect(()=>{
-        setCurrentItem(currentResourceItem);
-        setCurrentCategory(currentResourceCategory);
+        if(currentResourceCategory !== "Bank")
+        {
+            setCurrentItem(currentResourceItem);
+            setCurrentCategory(currentResourceCategory);
+        }
+
 
         if(isCrafting && !methods.HandleCheckCanCraft(currentCategory, currentItem))
             setIsCrafting(false);
@@ -52,12 +59,15 @@ function ResourceGather(){
         <>
             {!methods.HandleCheckIfRecipeExists(currentCategory)? (
                 <div >
+                    {/*TODO remove this again*/}
+                    {currentResourceCategory}, {currentResourceItem}
                     <ResourceTask isGathering={isGathering}
                                   category={currentCategory}
                                   item={currentItem}
                                   amount={amount}
                                   HandleResourceIncrease={methods.HandleResourceIncrease}
                     />
+
                     <button  onClick={handleSetGathering}>StartGather</button>
                 </div>
             ):
