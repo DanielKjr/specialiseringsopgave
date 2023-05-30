@@ -1,6 +1,6 @@
 import {useFormInput} from "../../Hooks/useFormInput";
 import { SaveNameCookie, SaveResourceCookies} from "../Storage/CookiesForm";
-import resources from "../../Constants/resources";
+import resources from "../../Constants/Resources";
 import "../../Styles/WelcomeScreen.css";
 
 export default function NameForm(){

@@ -1,11 +1,9 @@
-import React, {useCallback, useContext, useEffect} from "react";
+import React, {useContext, useEffect} from "react";
 import {SaveResourceCookies} from "../Storage/CookiesForm";
-import ResourceGather from "../Functionality/ResourceGather";
 import "../../Styles/MainView.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import DisplayBank from "./DisplayBank";
-import HandleSkillItem from "../Functionality/HandleSkillItem";
-import Fadeout from "../../Hooks/FadeOut";
+import HandleSkillItem from "../Functionality/Handlers/HandleSkillItem";
 
 //Displays the core functionality of gathering resources, handling of skills and display of bank. Also, responsible for saving progress.
 function PlayerControlComponent() {

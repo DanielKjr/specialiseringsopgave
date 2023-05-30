@@ -1,6 +1,6 @@
-import ProgressBar from "../Displays/ProgressBar";
+import ProgressBar from "../../Displays/ProgressBar";
 import React, {useCallback, useEffect, useState} from "react";
-import useTaskProgress from "../../Hooks/useTaskProgress";
+import useTaskProgress from "../../../Hooks/useTaskProgress";
 
 //Similar to ResourceTask but utilizes the recipe requirement checks and handling of resources.
 function CraftingTask({category, item, isCrafting, handleCheckRecipeRequirement}) {

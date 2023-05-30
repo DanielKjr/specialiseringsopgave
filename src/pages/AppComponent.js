@@ -1,14 +1,16 @@
 import React, {Component} from "react";
 import {CookieProvider} from "../components/Storage/CookiesProvider";
 import {ResourceProvider} from "../components/Storage/ResourceProvider";
-import App from "../pages/App";
+import App from "./App";
 import {CookiesExist} from "../components/Storage/CookiesForm";
-import WelcomeScreenComponent from "../components/Displays/WelcomeScreenComponent";
+import WelcomeScreenComponent from "./WelcomeScreenComponent";
 
 //Not sure if this should be used for anything yet
-class FlowComponent extends Component{
-
-
+class AppComponent extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {nameProp: "For Display purposes"};
+    }
      componentDidMount() {
 
     }
@@ -17,6 +19,12 @@ class FlowComponent extends Component{
 
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+    }
+    componentDidCatch(error, errorInfo) {
+
+    }
 
     render(){
          if(CookiesExist())
@@ -35,12 +43,8 @@ class FlowComponent extends Component{
              return(
                  <WelcomeScreenComponent/>
              );
-
-
          }
     }
-
-
 }
 
-export default FlowComponent;
+export default AppComponent;

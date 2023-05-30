@@ -24,8 +24,10 @@
     width: 40px;
     height: 40px;
     right: 4px;
+    top: 5px;
     vertical-align: center;
     horiz-align: center;
+
 }
 
 .resourceGain-Image{

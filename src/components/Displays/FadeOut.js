@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import "../Styles/Fadeout.css";
+import "../../Styles/Fadeout.css";
 
 const Fadeout = ({image}) => {
     const [fadeOut, setFadeOut] = useState(false);

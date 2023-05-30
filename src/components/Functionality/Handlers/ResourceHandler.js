@@ -1,13 +1,12 @@
-import {useCallback, useContext, useEffect, useState} from "react";
-import ResourceTask from "./ResourceTask";
-import {ResourceContext} from "../Storage/ResourceProvider";
-import CraftingTask from "./CraftingTask";
-import Fadeout from "../../Hooks/FadeOut";
-import "../../Styles/Requirements.css";
+import {useContext, useEffect, useState} from "react";
+import ResourceTask from "../Tasks/ResourceTask";
+import {ResourceContext} from "../../Storage/ResourceProvider";
+import CraftingTask from "../Tasks/CraftingTask";
+import "../../../Styles/Requirements.css";
 
 //Handles the start of resource tasks, if no recipe is found on the targeted resource it returns a ResourceTask component.
 //If a recipe is found it returns the requirements as well as a CraftingTask component.
-function ResourceGather(){
+function ResourceHandler(){
 
     const {
         currentResourceCategory,
@@ -15,7 +14,7 @@ function ResourceGather(){
         amount,
         methods
     } = useContext(ResourceContext);
-    // TODO maybe move the isGathering outside the component
+
     const [isGathering, setIsGathering] = useState(false);
     const [isCrafting, setIsCrafting] = useState(false);
     const [currentItem, setCurrentItem] = useState(currentResourceItem);
@@ -24,9 +23,7 @@ function ResourceGather(){
 
     useEffect(() =>{
         if(methods.HandleCheckIfRecipeExists(currentCategory, currentItem))
-        {
             HandleSetCraftingRequirements();
-        }
 
     }, [currentCategory, currentItem,methods.HandleCheckIfRecipeExists])
 
@@ -102,4 +99,4 @@ function ResourceGather(){
 
 }
 
-export default ResourceGather;
+export default ResourceHandler;

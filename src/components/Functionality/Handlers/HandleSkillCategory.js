@@ -1,7 +1,7 @@
 import {useCallback, useContext, useEffect, useState} from "react";
-import "../../Styles/SkillDisplay.css";
-import "../../Styles/App.css";
-import {ResourceContext} from "../Storage/ResourceProvider";
+import "../../../Styles/SkillDisplay.css";
+import "../../../Styles/App.css";
+import {ResourceContext} from "../../Storage/ResourceProvider";
 
 //Handles the display and interactions of the Skill categories
 function HandleSkillCategory() {

@@ -1,7 +1,7 @@
 import React from "react";
-import NameForm from "./NameForm";
-import HandleDeleteCookies from "../Storage/CookiesForm"
-import "../../Styles/WelcomeScreen.css";
+import NameForm from "../components/Displays/NameForm";
+import HandleDeleteCookies from "../components/Storage/CookiesForm"
+import "../Styles/WelcomeScreen.css";
 function welcomeScreen(){
 
     return(
