@@ -41,22 +41,6 @@ export default function TimeCalculation(props) {
         }
     }
 
-    // function UpdateResources(){
-    //     if(numIntervals >= 1)
-    //     {
-    //         if(numIntervals >= maxInterval)
-    //         {
-    //             methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), maxInterval);
-    //             SetStorage('lastVisitTime', now.toString());
-    //         }
-    //         else
-    //         {
-    //             methods.HandleResourceIncrease(GetStorage('lastResourceCategory'), GetStorage('lastResourceItem'), numIntervals);
-    //             SetStorage('lastVisitTime', now.toString());
-    //         }
-    //
-    //     }
-    // }
 
     function UpdateResources() {
             numIntervals >= 1 ?

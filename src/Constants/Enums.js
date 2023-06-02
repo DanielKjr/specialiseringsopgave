@@ -55,7 +55,6 @@ const ResourceEnum = {
      SWORDFISH: "Swordfish"
 }
 
-//TODO fix that
  const CookingEnum = {
      COOKEDSHRIMP : "CookedShrimp",
      COOKEDHERRING: "CookedHerring",
@@ -69,4 +68,8 @@ const ResourceEnum = {
 }
 
 const Enums = {ResourceEnum, MiningEnum, SmeltingEnum, WoodcuttingEnum, FishingEnum, CookingEnum};
+
+//Ended up not utilizing this as much as expected, it can be used to set a category and such in a
+//more readable way for the programmer, but in terms of the actual program it is controlled by
+//reading the property keys off the resource object for the most part.
 export default Enums;

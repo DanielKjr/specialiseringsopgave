@@ -56,8 +56,7 @@ function ResourceHandler(){
         <>
             {!methods.HandleCheckIfRecipeExists(currentCategory)? (
                 <div >
-                    {/*TODO remove this again*/}
-                    {currentResourceCategory}, {currentResourceItem}
+                    Current category: {currentResourceCategory}, Current Item: {currentResourceItem}
                     <ResourceTask isGathering={isGathering}
                                   category={currentCategory}
                                   item={currentItem}
