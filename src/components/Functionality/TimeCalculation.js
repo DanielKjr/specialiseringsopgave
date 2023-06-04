@@ -52,8 +52,6 @@ export default function TimeCalculation(props) {
                     SetStorage('lastVisitTime', now.toString())
 
             :  <></>
-
-
     }
 
     return (
@@ -73,9 +71,8 @@ export default function TimeCalculation(props) {
                         <button onClick={() => SetLocalStorage()}>OK</button>
                     </div>
                 </div>
-            )}
+            )};
         </>
-
     );
 
 }

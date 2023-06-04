@@ -29,8 +29,7 @@ export default function HandleDeleteCookies(){
                         <button onClick={Confirmation}>Go back</button>
                     </div>
                 </div>
-
-            )}
+            )};
         </>
     );
 }

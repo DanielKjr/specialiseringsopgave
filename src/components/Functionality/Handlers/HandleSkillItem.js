@@ -2,7 +2,7 @@ import {useCallback, useContext, useEffect, useState} from "react";
 import "../../../Styles/SkillDisplay.css";
 import "../../../Styles/App.css";
 import {ResourceContext} from "../../Storage/ResourceProvider";
-import SkillDisplay from "../../Displays/SkillDisplay";
+import SkillDisplay from "../../Displays/Unused/SkillDisplay";
 
 
 
@@ -17,10 +17,17 @@ function HandleSkillItem(){
     const [availableSkills, setAvailableSkills] = useState(parsedResources[currentResourceCategory]);
     const [objectKeys, setObjectKeys] = useState(Object.keys(availableSkills));
 
+    useEffect(() => {
+        const newAvailableSkills = parsedResources[currentResourceCategory];
+        const newObjectKeys = Object.keys(newAvailableSkills);
+
+        setAvailableSkills(newAvailableSkills);
+        setObjectKeys(newObjectKeys);
+    }, [parsedResources, currentResourceCategory]);
     function HandleChangeResource(key){
         methods.HandleSetCurrentResourceItem(key);
     }
-    //TODO decide if it is worth it to use SkillDisplay for this or not
+
     const renderObjects = useCallback(() => {
         try{
             return objectKeys.map((key, i) => {
@@ -52,13 +59,7 @@ function HandleSkillItem(){
     }, [objectKeys])
 
 
-    useEffect(() => {
-            const newAvailableSkills = parsedResources[currentResourceCategory];
-            const newObjectKeys = Object.keys(newAvailableSkills);
 
-            setAvailableSkills(newAvailableSkills);
-            setObjectKeys(newObjectKeys);
-    }, [parsedResources, currentResourceCategory]);
 
     return(
         // <SkillDisplay

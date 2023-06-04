@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import {CookieProvider} from "../../Storage/CookiesProvider";
 import {ResourceProvider} from "../../Storage/ResourceProvider";
-import App from "../../../pages/App";
+import App from "../../pages/App";
 import {CookiesExist} from "../../Storage/CookiesForm";
-import WelcomeScreenComponent from "../../../pages/WelcomeScreenComponent";
+import WelcomeScreenComponent from "../../pages/WelcomeScreenComponent";
 
 //Not sure if this should be used for anything yet
 class AppComponent extends Component{

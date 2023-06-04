@@ -1,6 +1,6 @@
 import ProgressBar from "../../Displays/ProgressBar";
 import React, {useCallback,useEffect, useState} from "react";
-import useTaskProgress from "../../../Hooks/useTaskProgress";
+import useTaskProgress from "../../Hooks/useTaskProgress";
 
 //Displays and handles the progress of a resource task.
 function ResourceTask({category, item, amount, HandleResourceIncrease, isGathering}) {

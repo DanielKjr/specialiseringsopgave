@@ -45,8 +45,6 @@ function HandleSkillCategory() {
         <div className="sidebar">
             {renderObjects()}
         </div>
-
-
     );
 }
 

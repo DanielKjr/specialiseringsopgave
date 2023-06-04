@@ -1,23 +1,20 @@
 import React, {useContext, useEffect, useState} from "react";
-import HandleDeleteCookies, {SaveResourceCookies} from "../components/Storage/CookiesForm";
-import PlayerControlComponent from "../components/Displays/PlayerControlComponent";
-import "../Styles/App.css"
-import "../Styles/MainView.css";
-import ShowBank from "../components/Functionality/ShowBank";
-import TimeCalculation from "../components/Functionality/TimeCalculation";
-import {ResourceContext} from "../components/Storage/ResourceProvider";
-import HandleSkillCategory from "../components/Functionality/Handlers/HandleSkillCategory";
-import ResourceHandler from "../components/Functionality/Handlers/ResourceHandler";
+import HandleDeleteCookies, {SaveResourceCookies} from "../Storage/CookiesForm";
+import PlayerControlComponent from "../Displays/PlayerControlComponent";
+import "../../Styles/App.css"
+import "../../Styles/MainView.css";
+import ShowBank from "../Functionality/ShowBank";
+import TimeCalculation from "../Functionality/TimeCalculation";
+import {ResourceContext} from "../Storage/ResourceProvider";
+import HandleSkillCategory from "../Functionality/Handlers/HandleSkillCategory";
+import ResourceHandler from "../Functionality/Handlers/ResourceHandler";
 
 
 function App(){
 
     const {parsedResources} = useContext(ResourceContext);
     const [hasLoaded, setHasLoaded] = useState(false);
-    const HandleSetHasLoaded = ()=>{
-        SaveResourceCookies(parsedResources);
-        setHasLoaded(true);
-    }
+
     //if hasLoaded then update the lastVisitTime constantly, so you don't get offline progression
     useEffect(() => {
         if(hasLoaded)
@@ -25,6 +22,12 @@ function App(){
             localStorage.setItem('lastVisitTime', new Date().getTime().toString());
         }
     });
+
+    const HandleSetHasLoaded = ()=>{
+        SaveResourceCookies(parsedResources);
+        setHasLoaded(true);
+    }
+
 
     return(
             <div className="parent-container">
@@ -45,6 +48,7 @@ function App(){
                     </div>
                     {!hasLoaded &&(<TimeCalculation HandleSetHasLoaded={HandleSetHasLoaded}/>)}
                 </div>
+
             </div>
         );
 }

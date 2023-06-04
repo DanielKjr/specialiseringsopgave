@@ -17,6 +17,7 @@ function PlayerControlComponent() {
 
     function HandleSave() {
         SaveResourceCookies(parsedResources);
+        //only save the "last" values if the categories match. Like Mining and Tin.
         if(methods.HandleCategoryMisMatchCheck(currentResourceCategory, currentResourceItem))
         {
             localStorage.setItem('lastResourceCategory', currentResourceCategory);

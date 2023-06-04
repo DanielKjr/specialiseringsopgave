@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {GetNameCookie, GetResourceCookie } from "./CookiesForm";
 
+
 const CookiesContext = React.createContext({});
 
 //Provides access to information stored in cookies, most importantly the resources.

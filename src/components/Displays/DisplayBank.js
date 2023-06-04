@@ -10,12 +10,13 @@ function DisplayBank(){
         bank
     } = useContext(ResourceContext);
 
-
     const [keyValues, setKeyValues] = useState(Object.values(JSON.parse(bank)));
 
+    useEffect(() =>{
+        setKeyValues(Object.values(JSON.parse(bank)));
+    }, [ bank])
 
     const renderBank = useCallback(() => {
-
             let count = 0;
             const bankItems = keyValues.map((key, i) => {
                 const sprites = [];
@@ -38,7 +39,7 @@ function DisplayBank(){
                                         <img
                                             className="bank-item"
                                             src={`./ResourceSprites/${sprite}.png`}
-                                            alt="Missing img"
+                                            alt={`./ResourceSprites/${sprite}.png not found`}
                                         />
                                         <span className="tooltipText">{sprite}</span>
                                         <div className="bank-text">
@@ -51,6 +52,7 @@ function DisplayBank(){
                     </div>
                 );
             }, [bank]);
+
 
             return count > 0 ? (
                 <div className="bank-container">{bankItems}</div>
@@ -65,9 +67,7 @@ function DisplayBank(){
 
 
 
-    useEffect(() =>{
-        setKeyValues(Object.values(JSON.parse(bank)));
-    }, [ bank])
+
 
     return(
 

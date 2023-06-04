@@ -25,19 +25,7 @@ function ResourceHandler(){
         if(methods.HandleCheckIfRecipeExists(currentCategory, currentItem))
             HandleSetCraftingRequirements();
 
-    }, [currentCategory, currentItem,methods.HandleCheckIfRecipeExists])
-
-    function HandleSetCraftingRequirements(){
-        setCraftingRequirements(methods.GetCraftingRequirements(currentCategory, currentItem));
-    }
-    function handleSetGathering(){
-        setIsGathering(!isGathering);
-    }
-    function handleSetCrafting(){
-        if(methods.HandleCheckCanCraft(currentCategory, currentItem))
-         setIsCrafting(!isCrafting);
-    }
-
+    }, [currentCategory, currentItem,methods.HandleCheckIfRecipeExists]);
 
     useEffect(()=>{
         if(currentResourceCategory !== "Bank")
@@ -50,7 +38,18 @@ function ResourceHandler(){
         if(isCrafting && !methods.HandleCheckCanCraft(currentCategory, currentItem))
             setIsCrafting(false);
 
-    }, [ methods.HandleCheckCanCraft,isCrafting,currentResourceItem, currentResourceCategory])
+    }, [ methods.HandleCheckCanCraft,isCrafting,currentResourceItem, currentResourceCategory]);
+
+    function HandleSetCraftingRequirements(){
+        setCraftingRequirements(methods.GetCraftingRequirements(currentCategory, currentItem));
+    }
+    function handleSetGathering(){
+        setIsGathering(!isGathering);
+    }
+    function handleSetCrafting(){
+        if(methods.HandleCheckCanCraft(currentCategory, currentItem))
+         setIsCrafting(!isCrafting);
+    }
 
     return(
         <>

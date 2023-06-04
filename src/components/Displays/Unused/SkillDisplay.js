@@ -1,5 +1,5 @@
 import {useCallback, useContext, useEffect, useState} from "react";
-import {ResourceContext} from "../Storage/ResourceProvider";
+import {ResourceContext} from "../../Storage/ResourceProvider";
 
 //Needs to have the css classes set as props for this to be worth it
 export default function SkillDisplay(props){

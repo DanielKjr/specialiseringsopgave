@@ -37,7 +37,8 @@ function ResourceProvider(props){
             setCurrentResourceCategory(category);
             setCurrentResourceItem(Object.keys(parsedResources[category])[0]);
         }
-        else{
+        else
+        {
                 setCurrentResourceCategory(category);
         }
     }
@@ -111,7 +112,7 @@ function ResourceProvider(props){
             HandleResourceIncrease(category, item, 1);
         }
     }
-    //TODO find out if I can get rid of this duplicate code
+    //Duplicate code
     const HandleCheckCanCraft = (category, item) => {
         let requirements = recipes[category][item].recipe;
         let subskill = HandleDetermineRecipeSubset(category);
