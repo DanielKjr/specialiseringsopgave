@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import App from "./components/pages/App";
 import {ResourceProvider} from "./components/Storage/ResourceProvider";
 import {CookieProvider} from "./components/Storage/CookiesProvider";
-import {CookiesExist} from "./components/Storage/CookiesForm";
+import {cookiesExist} from "./components/Storage/CookiesForm";
 import WelcomeScreenComponent from "./components/pages/WelcomeScreenComponent";
 import ErrorBoundaryComponent from "./components/ClassComponent/ErrorBoundaryComponent";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-if (CookiesExist()) {
+if (cookiesExist()) {
     if (localStorage.getItem('lastVisitTime') === null) {
         localStorage.setItem('lastVisitTime', new Date().getTime().toString());
     }

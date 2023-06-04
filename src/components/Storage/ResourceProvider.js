@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import Enums from "../../Constants/Enums";
 import {CookiesContext} from "./CookiesProvider";
-import {SaveResourceCookies} from "./CookiesForm";
+import {saveResourceCookies} from "./CookiesForm";
 import recipes from "../../Constants/Recipes";
 
 const ResourceContext = React.createContext({});
@@ -22,16 +22,16 @@ function ResourceProvider(props){
             setBank(resources);
     },[bank, resources])
 
-    const HandleSave = () => {
-        SaveResourceCookies(parsedResources);
+    const handleSave = () => {
+        saveResourceCookies(parsedResources);
     }
 
-    const HandleSetAmount = (value) => {
+    const handleSetAmount = (value) => {
         setAmount(value);
     }
 
-    const HandleSetCurrentResourceCategory = (category) => {
-        HandleSetPreviousResourceInfo();
+    const handleSetCurrentResourceCategory = (category) => {
+        handleSetPreviousResourceInfo();
         if(category !== "Bank")
         {
             setCurrentResourceCategory(category);
@@ -43,14 +43,14 @@ function ResourceProvider(props){
         }
     }
 
-    const HandleSetPreviousResourceInfo = () => {
-        if(HandleCategoryMisMatchCheck(currentResourceCategory, currentResourceItem))
+    const handleSetPreviousResourceInfo = () => {
+        if(handleCategoryMisMatchCheck(currentResourceCategory, currentResourceItem))
         {
             setPreviousResourceCategory(currentResourceCategory);
             setPreviousResourceItem(currentResourceItem);
         }
     }
-    const HandleCategoryMisMatchCheck = (category, item) => {
+    const handleCategoryMisMatchCheck = (category, item) => {
         try{
             return parsedResources[category][item].amount !== undefined;
         }
@@ -59,15 +59,15 @@ function ResourceProvider(props){
             return false;
         }
     }
-    const HandleSetBankView = (category) => {
+    const handleSetBankView = (category) => {
         setCurrentResourceCategory(category);
     }
 
-    const HandleSetCurrentResourceItem =(item)=> {
+    const handleSetCurrentResourceItem =(item)=> {
         setCurrentResourceItem(item);
 
     }
-    const HandleResourceIncrease = (category, item , amount) =>{
+    const handleResourceIncrease = (category, item , amount) =>{
         try{
             console.log("Category: " + category, "item: " + item, "Amount: " + amount);
             parsedResources[category][item].amount += amount;
@@ -79,7 +79,7 @@ function ResourceProvider(props){
         }
 
     }
-    const HandleResourceDecrease = (category, item , amount) =>{
+    const handleResourceDecrease = (category, item , amount) =>{
             parsedResources[category][item].amount -= amount;
         updateResources(parsedResources);
     }
@@ -87,13 +87,13 @@ function ResourceProvider(props){
 
 
     //TODO should probably split this to different component
-    const HandleCheckIfRecipeExists = (category) => {
+    const handleCheckIfRecipeExists = (category) => {
         return recipes.hasOwnProperty(category);
     }
 
-    const HandleCheckRecipeRequirement = (category, item) => {
+    const handleCheckRecipeRequirement = (category, item) => {
         let requirements = recipes[category][item].recipe;
-        let subskill = HandleDetermineRecipeSubset(category);
+        let subskill = handleDetermineRecipeSubset(category);
         let count = 0;
         let tmp = [];
         for(let req in requirements)
@@ -107,15 +107,15 @@ function ResourceProvider(props){
         {
             for(let i = 0; i < tmp.length; i++)
             {
-                HandleResourceDecrease(subskill, [tmp[i]], requirements[tmp[i]]);
+                handleResourceDecrease(subskill, [tmp[i]], requirements[tmp[i]]);
             }
-            HandleResourceIncrease(category, item, 1);
+            handleResourceIncrease(category, item, 1);
         }
     }
     //Duplicate code
-    const HandleCheckCanCraft = (category, item) => {
+    const handleCheckCanCraft = (category, item) => {
         let requirements = recipes[category][item].recipe;
-        let subskill = HandleDetermineRecipeSubset(category);
+        let subskill = handleDetermineRecipeSubset(category);
         let count = 0;
 
         for(let req in requirements)
@@ -127,7 +127,7 @@ function ResourceProvider(props){
         return count === Object.keys(requirements).length;
     }
 
-    const GetCraftingRequirements = (category, item) => {
+    const getCraftingRequirements = (category, item) => {
         let requirements = recipes[category][item].recipe;
         let tmp = [];
 
@@ -140,7 +140,7 @@ function ResourceProvider(props){
        return tmp;
     }
 
-    const HandleDetermineRecipeSubset = (category) => {
+    const handleDetermineRecipeSubset = (category) => {
         switch (category)
         {
             case"Smithing":
@@ -166,18 +166,18 @@ function ResourceProvider(props){
         amount,
         bank,
         methods : {
-            HandleSetBankView,
-            HandleSetAmount,
-            HandleSave,
-            HandleSetCurrentResourceCategory,
-            HandleSetCurrentResourceItem,
-            HandleResourceIncrease,
-            HandleCheckIfRecipeExists,
-            HandleCheckRecipeRequirement,
-            HandleCheckCanCraft,
-            GetCraftingRequirements,
-            HandleDetermineRecipeSubset,
-            HandleCategoryMisMatchCheck
+            HandleSetBankView: handleSetBankView,
+            HandleSetAmount: handleSetAmount,
+            HandleSave: handleSave,
+            HandleSetCurrentResourceCategory: handleSetCurrentResourceCategory,
+            HandleSetCurrentResourceItem: handleSetCurrentResourceItem,
+            HandleResourceIncrease: handleResourceIncrease,
+            HandleCheckIfRecipeExists: handleCheckIfRecipeExists,
+            HandleCheckRecipeRequirement: handleCheckRecipeRequirement,
+            HandleCheckCanCraft: handleCheckCanCraft,
+            GetCraftingRequirements: getCraftingRequirements,
+            HandleDetermineRecipeSubset: handleDetermineRecipeSubset,
+            HandleCategoryMisMatchCheck: handleCategoryMisMatchCheck
         }
     };
 

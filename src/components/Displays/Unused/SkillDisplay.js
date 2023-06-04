@@ -19,7 +19,7 @@ export default function SkillDisplay(props){
         setAvailable(newAvailableSkills);
         setKeys(newObjectKeys);
     }, [parsedResources, currentResourceCategory]);
-    function HandleOnClick(value){
+    function handleOnClick(value){
         props.onClick(value);
     }
 
@@ -27,7 +27,7 @@ export default function SkillDisplay(props){
             return keys.map((key, i) => {
                 return (
                     <div key={`Resources-+${i}`}
-                         onClick={() =>  HandleOnClick(key)}
+                         onClick={() =>  handleOnClick(key)}
                          className="skill-item"                    >
                         <div key={`Resources-${i}`} >
                             <img

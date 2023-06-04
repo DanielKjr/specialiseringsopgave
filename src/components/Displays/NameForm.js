@@ -1,5 +1,5 @@
 import {useFormInput} from "../Hooks/useFormInput";
-import { SaveNameCookie, SaveResourceCookies} from "../Storage/CookiesForm";
+import { saveNameCookie, saveResourceCookies} from "../Storage/CookiesForm";
 import resources from "../../Constants/Resources";
 import "../../Styles/WelcomeScreen.css";
 
@@ -8,8 +8,8 @@ export default function NameForm(){
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        SaveNameCookie(nameProp);
-        SaveResourceCookies(resources);
+        saveNameCookie(nameProp);
+        saveResourceCookies(resources);
         window.location.reload();
 
     }

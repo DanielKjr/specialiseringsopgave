@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from "react";
-import {SaveResourceCookies} from "../Storage/CookiesForm";
+import {saveResourceCookies} from "../Storage/CookiesForm";
 import "../../Styles/MainView.css";
 import {ResourceContext} from "../Storage/ResourceProvider";
 import DisplayBank from "./DisplayBank";
@@ -15,8 +15,8 @@ function PlayerControlComponent() {
         methods
     } = useContext(ResourceContext);
 
-    function HandleSave() {
-        SaveResourceCookies(parsedResources);
+    function handleSave() {
+        saveResourceCookies(parsedResources);
         //only save the "last" values if the categories match. Like Mining and Tin.
         if(methods.HandleCategoryMisMatchCheck(currentResourceCategory, currentResourceItem))
         {
@@ -28,7 +28,7 @@ function PlayerControlComponent() {
 
     //save every time any of these things change. To avoid it doing offline progress while you are there
     useEffect(() => {
-        HandleSave();
+        handleSave();
     }, [currentResourceCategory, currentResourceItem, parsedResources])
 
 
@@ -39,7 +39,7 @@ function PlayerControlComponent() {
             <div className="skill-container">
                 <HandleSkillItem/>
             </div>
-            <button onClick={HandleSave}>Save Progress</button>
+            <button onClick={handleSave}>Save Progress</button>
         </div>
      :
         <div className="bank-container">

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import {GetNameCookie, GetResourceCookie } from "./CookiesForm";
+import {getNameCookie, getResourceCookie } from "./CookiesForm";
 
 
 const CookiesContext = React.createContext({});
 
 //Provides access to information stored in cookies, most importantly the resources.
 function CookieProvider(props){
-    const [userName, setUserName] = useState(GetNameCookie());
-    const [resources, setResources] = useState(GetResourceCookie());
+    const [userName, setUserName] = useState(getNameCookie());
+    const [resources, setResources] = useState(getResourceCookie());
 
     const updateUserName = (name) => {
         setUserName(name);

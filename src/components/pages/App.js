@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import HandleDeleteCookies, {SaveResourceCookies} from "../Storage/CookiesForm";
+import HandleDeleteCookies, {saveResourceCookies} from "../Storage/CookiesForm";
 import PlayerControlComponent from "../Displays/PlayerControlComponent";
 import "../../Styles/App.css"
 import "../../Styles/MainView.css";
@@ -23,8 +23,8 @@ function App(){
         }
     });
 
-    const HandleSetHasLoaded = ()=>{
-        SaveResourceCookies(parsedResources);
+    const handleSetHasLoaded = ()=>{
+        saveResourceCookies(parsedResources);
         setHasLoaded(true);
     }
 
@@ -46,7 +46,7 @@ function App(){
                         <ResourceHandler/>
                         <PlayerControlComponent />
                     </div>
-                    {!hasLoaded &&(<TimeCalculation HandleSetHasLoaded={HandleSetHasLoaded}/>)}
+                    {!hasLoaded &&(<TimeCalculation handleSetHasLoaded={handleSetHasLoaded}/>)}
                 </div>
 
             </div>

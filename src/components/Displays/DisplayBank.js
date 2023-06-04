@@ -53,26 +53,16 @@ function DisplayBank(){
                 );
             }, [bank]);
 
-
-            return count > 0 ? (
+            return count > 0 ?
                 <div className="bank-container">{bankItems}</div>
-            ) : (
-                        <h1>
-                            Bank is empty
-                        </h1>
-            );
+             :
+                        <h1>Bank is empty</h1>
 
     }, [keyValues]);
 
 
-
-
-
-
     return(
-
         <div className="bank-container"> {renderBank()}</div>
-
     );
 }
 

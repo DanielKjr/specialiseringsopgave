@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {CookieProvider} from "../../Storage/CookiesProvider";
 import {ResourceProvider} from "../../Storage/ResourceProvider";
 import App from "../../pages/App";
-import {CookiesExist} from "../../Storage/CookiesForm";
+import {cookiesExist} from "../../Storage/CookiesForm";
 import WelcomeScreenComponent from "../../pages/WelcomeScreenComponent";
 
 //Not sure if this should be used for anything yet
@@ -27,7 +27,7 @@ class AppComponent extends Component{
     }
 
     render(){
-         if(CookiesExist())
+         if(cookiesExist())
          {
              return(
                  <React.StrictMode>

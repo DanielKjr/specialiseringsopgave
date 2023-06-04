@@ -15,6 +15,7 @@ class ErrorBoundaryComponent extends React.Component {
         window.location.reload();
     }
 
+    //This won't be easily visible due to the error screen, but the important part is that it clears storage when you refresh
     render() {
         if (this.state.hasError) {
             return(
